@@ -1,37 +1,34 @@
-export default function PublicLayout({ children }: { children: React.ReactNode }) {
+"use client";
 
-    function TopNavbar() {
-  return (
-    <header style={{ height: 50, background: "#222", color: "#fff", padding: 10 }}>
-      Public Top Navbar
-    </header>
-  );
-}
+import { usePathname } from "next/navigation";
+import SideNavbar from "@/components/navbars/sideNavbar";
+import TopNavbar from "@/components/navbars/topNavbar";
+import React from "react";
 
-function SideNavbar() {
-  return (
-    <nav
-      style={{
-        width: 200,
-        background: "#333",
-        color: "#fff",
-        height: "calc(100vh - 50px)",
-        padding: 10,
-        position: "fixed",
-        top: 50,
-        left: 0,
-      }}
-    >
-      Public Side Navbar
-    </nav>
-  );
-}
+type PublicLayoutProps = {
+  children: React.ReactNode;
+  routes: any[];
+};
+
+export default function PublicLayout({ children, routes }: PublicLayoutProps) {
+  const pathname = usePathname();
+
+  // Hide SideNavbar for "/auth" routes and homepage "/"
+  const hideSidebar = pathname === "/" || pathname.startsWith("/auth");
+
   return (
     <div>
-      {/* You can add a public header or navbar here if needed */}
-      <TopNavbar />
-      <SideNavbar />
-      <main>{children}</main>
+      <TopNavbar routes={routes} />
+      {!hideSidebar && <SideNavbar routes={routes} />}
+      <main
+        style={{
+          marginLeft: hideSidebar ? 0 : 200,
+          marginTop: 50,
+          padding: 20,
+        }}
+      >
+        {children}
+      </main>
     </div>
   );
 }

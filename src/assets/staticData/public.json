@@ -1,0 +1,18 @@
+[
+  {
+    "type": "collapse",
+    "name": "Home",
+    "key": "home",
+    "icon": "home",
+    "route": "/",
+    "component": "Home"
+  },
+  {
+    "type": "collapse",
+    "name": "About",
+    "key": "about",
+    "icon": "info",
+    "route": "/about",
+    "component": "About"
+  }
+]

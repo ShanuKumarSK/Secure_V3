@@ -1,0 +1,18 @@
+[
+  {
+    "type": "collapse",
+    "name": "Dashboard",
+    "key": "dashboard",
+    "icon": "dashboard",
+    "route": "/dashboard",
+    "component": "Dashboard"
+  },
+  {
+    "type": "collapse",
+    "name": "Tables",
+    "key": "tables",
+    "icon": "table_view",
+    "route": "/tables",
+    "component": "Tables"
+  }
+]

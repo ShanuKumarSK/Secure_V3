@@ -1,34 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import TopNavbar from "@/components/navbars/topNavbar";
+import SideNavbar from "@/components/navbars/sideNavbar";
 
-function TopNavbar() {
-  return (
-    <header style={{ height: 50, background: "#222", color: "#fff", padding: 10 }}>
-      States Top Navbar
-    </header>
-  );
-}
 
-function SideNavbar() {
-  return (
-    <nav
-      style={{
-        width: 200,
-        background: "#333",
-        color: "#fff",
-        height: "calc(100vh - 50px)",
-        padding: 10,
-        position: "fixed",
-        top: 50,
-        left: 0,
-      }}
-    >
-      States Side Navbar
-    </nav>
-  );
-}
-
-export default function StatesLayout({ children }: { children: React.ReactNode }) {
+export default function StatesLayout({ children, routes  }: { children: React.ReactNode, routes: any[] }) {
 //   const router = useRouter();
 //   const [loading, setLoading] = useState(true);
 
@@ -48,8 +24,8 @@ export default function StatesLayout({ children }: { children: React.ReactNode }
 
   return (
     <div>
-      <TopNavbar />
-      <SideNavbar />
+      <TopNavbar routes={routes} />
+      <SideNavbar routes={routes} />
       <main style={{ marginLeft: 200, marginTop: 50, padding: 20 }}>{children}</main>
     </div>
   );
