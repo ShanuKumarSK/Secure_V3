@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/layouts/LayoutWrapper";
 import Script from "next/script";
+import {
+  GoogleReCaptchaProvider,
+} from 'react-google-recaptcha-v3';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +34,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Script src="https://translation-plugin.bhashini.co.in/v2/website_translation_utility.js" data-pos-x="5" data-pos-y="10"></Script>
-        <LayoutWrapper>{children}</LayoutWrapper>
+        {/* <GoogleReCaptchaProvider reCaptchaKey=""> */}
+          <LayoutWrapper>{children}</LayoutWrapper>
+        {/* </GoogleReCaptchaProvider> */}
       </body>
     </html>
   );

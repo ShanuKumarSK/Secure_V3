@@ -17,14 +17,12 @@ export default function PublicLayout({ children, routes }: PublicLayoutProps) {
   const hideSidebar = pathname === "/" || pathname.startsWith("/auth");
 
   return (
-    <div>
+    <div >
       <TopNavbar routes={routes} />
       {!hideSidebar && <SideNavbar routes={routes} />}
       <main
         style={{
-          marginLeft: hideSidebar ? 0 : 200,
-          marginTop: 50,
-          padding: 20,
+          marginLeft: hideSidebar ? 0 : 250,
         }}
       >
         {children}
