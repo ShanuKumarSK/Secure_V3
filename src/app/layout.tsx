@@ -33,7 +33,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Script src="https://translation-plugin.bhashini.co.in/v2/website_translation_utility.js" data-pos-x="5" data-pos-y="10"></Script>
+        <Script src="https://translation-plugin.bhashini.co.in/v2/website_translation_utility.js" data-pos-x="5" data-pos-y="10" />
         {/* <GoogleReCaptchaProvider reCaptchaKey=""> */}
           <LayoutWrapper>{children}</LayoutWrapper>
         {/* </GoogleReCaptchaProvider> */}

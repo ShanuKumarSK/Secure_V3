@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: [
+      "upload.wikimedia.org", 
+      "www.hindustantimes.com", 
+      "upload.wikimedia.org",
+      "example.com" // Add more domains as needed
+    ],
+  },
 };
 
 export default nextConfig;

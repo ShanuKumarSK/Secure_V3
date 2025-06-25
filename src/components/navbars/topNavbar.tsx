@@ -30,10 +30,10 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
           <span className="text-xs">Choose your theme</span>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-orange-500 rounded-full border border-white" />
-            <Image src="/facebook.svg" alt="Facebook" width={16} height={16} />
+            {/* <Image src="/facebook.svg" alt="Facebook" width={16} height={16} />
             <Image src="/cross.svg" alt="Cross" width={16} height={16} />
             <Image src="/rss.svg" alt="RSS" width={16} height={16} />
-            <Image src="/accessible.svg" alt="Accessibility" width={16} height={16} />
+            <Image src="/accessible.svg" alt="Accessibility" width={16} height={16} /> */}
           </div>
         </div>
       </div>

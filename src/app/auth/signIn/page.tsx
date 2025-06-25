@@ -18,14 +18,19 @@ export default function SignIn() {
   const [captchaText, setCaptchaText] = useState('');
   const [inputCaptcha, setInputCaptcha] = useState('');
   const [error, setError] = useState('');
+  const [spinning, setSpinning] = useState(false);
 
   useEffect(() => {
     setCaptchaText(generateCaptcha());
   }, []);
 
   const handleRefreshCaptcha = () => {
-    setCaptchaText(generateCaptcha());
-    setInputCaptcha('');
+    setSpinning(true);
+    setTimeout(() => {
+      setSpinning(false);
+      setCaptchaText(generateCaptcha());
+      setInputCaptcha('');
+    }, 1000);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -98,9 +103,9 @@ export default function SignIn() {
             <button
               type="button"
               onClick={handleRefreshCaptcha}
-              className="text-sm text-blue-400 hover:underline font-medium "
+              className="text-sm text-blue-400 hover:underline font-medium cursor-pointer"
             >
-              <LoopIcon fontSize="medium" fontWeight="bold" />
+              <LoopIcon fontSize="medium" className={`transition-transform ${spinning ? "animate-spin" : ""}`} />
             </button>
 
             <input
