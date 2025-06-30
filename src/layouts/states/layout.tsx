@@ -26,7 +26,7 @@ const SideNavRoutes = [
   },
   {
     type: 'link',
-    name: 'State-wise Dashboard',
+    name: 'States Dashboard',
     key: 'state-dashboard',
     icon: <DocumentScannerIcon />,
     route: '/state-dashboard',

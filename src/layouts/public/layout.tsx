@@ -28,7 +28,7 @@ const SideNavRoutes = [
   },
   {
     type: 'link',
-    name: 'State-wise Dashboard',
+    name: 'States Dashboard',
     key: 'state-dashboard',
     icon: <DocumentScannerIcon />,
     route: '/state-dashboard',
@@ -92,7 +92,7 @@ export default function PublicLayout({ children, routes }: PublicLayoutProps) {
       {!hideSidebar && <SideNavbar routes={SideNavRoutes} />}
       <main
         style={{
-          marginLeft: hideSidebar ? 0 : 250,
+          marginLeft: hideSidebar ? 0 : 256,
         }}
       >
         {children}

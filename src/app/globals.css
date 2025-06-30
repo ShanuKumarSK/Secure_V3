@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: 	#dcfafe;
   --foreground: #171717;
 }
 
@@ -26,10 +26,10 @@ body {
 }
 
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */
 
 .nft {
   user-select: none;

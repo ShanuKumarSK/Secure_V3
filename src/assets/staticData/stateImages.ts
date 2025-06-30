@@ -14,72 +14,72 @@ export const stateImages: StateImageMap = {
   },
   MH: {
     name: "Maharashtra",
-    image: "https://upload.wikimedia.org/wikipedia/commons/9/98/Gateway_of_India%2C_Mumbai.jpg",
+    image: "https://www.economist.com/cdn-cgi/image/width=1424,quality=80,format=auto/content-assets/images/20241123_TWASP004.jpg",
     caption: "Gateway of India, Mumbai",
   },
   RJ: {
     name: "Rajasthan",
-    image: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Hawa_Mahal_2011.jpg",
-    caption: "Hawa Mahal, Jaipur",
+    image: "https://s7ap1.scene7.com/is/image/incredibleindia/2-mehrangarh-fort-jodhpur-rajasthan-city-hero?qlt=82&ts=1726660925514",
+    caption: "Mehrangarh Fort, Jodhpur",
   },
   KL: {
     name: "Kerala",
-    image: "https://upload.wikimedia.org/wikipedia/commons/2/25/Kumarakom_houseboat_kerala.jpg",
+    image: "https://s7ap1.scene7.com/is/image/incredibleindia/1-jatayu-rock-kumarakom-kerala-2-city-hero?qlt=82&ts=1726672494503",
     caption: "Backwaters, Kumarakom",
   },
   TN: {
     name: "Tamil Nadu",
-    image: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Meenakshi_Amman_Temple_entrance_tower.jpg",
-    caption: "Meenakshi Temple, Madurai",
+    image: "https://img.nayatrip.com/images/state/big/TAMIL-NADU.jpg",
+    caption: "Temple",
   },
   KA: {
     name: "Karnataka",
-    image: "https://upload.wikimedia.org/wikipedia/commons/5/52/Mysore_Palace_in_the_evening.jpg",
+    image: "https://remotetraveler.com/wp-content/uploads/2014/10/Mysore-Palace2.jpg",
     caption: "Mysore Palace",
   },
   GJ: {
     name: "Gujarat",
-    image: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Statue_of_Unity_-_Attractions_-_View.jpg",
+    image: "https://cdn.dnaindia.com/sites/default/files/styles/full/public/2018/11/12/753361-statueofunity-reuters-110118.jpg",
     caption: "Statue of Unity",
   },
   WB: {
     name: "West Bengal",
-    image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Victoria_Memorial_Kolkata.jpg",
+    image: "https://res.cloudinary.com/kmadmin/image/upload/v1724217244/kiomoi/victoria_memorial_2480.jpg",
     caption: "Victoria Memorial, Kolkata",
   },
   PB: {
     name: "Punjab",
-    image: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Golden_Temple_-_Amritsar.jpg",
+    image: "https://www.holidify.com/images/cmsuploads/compressed/shutterstock_479585620_20191024174904_20200407155734.jpg",
     caption: "Golden Temple, Amritsar",
   },
   HP: {
     name: "Himachal Pradesh",
-    image: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Shimla_scenery.jpg",
+    image: "https://images.trvl-media.com/lodging/97000000/96980000/96976300/96976240/fb966911.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
     caption: "Shimla Hills",
   },
   GA: {
     name: "Goa",
-    image: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Palolem_beach%2C_Goa.jpg",
+    image: "https://clubmahindra.gumlet.io/blog/media/section_images/palolembea-b0b10c223bd68f2.webp?w=376&dpr=2.6",
     caption: "Palolem Beach",
   },
   DL: {
     name: "Delhi",
-    image: "https://upload.wikimedia.org/wikipedia/commons/5/5c/India_Gate_in_New_Delhi_03-2016_img3.jpg",
+    image: "https://s7ap1.scene7.com/is/image/incredibleindia/india-gate-delhi-1-attr-hero?qlt=82&ts=1727351922349",
     caption: "India Gate",
   },
   BR: {
     name: "Bihar",
-    image: "https://upload.wikimedia.org/wikipedia/commons/2/27/Mahabodhi_Temple_in_Bodh_Gaya.jpg",
+    image: "https://clubmahindra.gumlet.io/blog/images/Great-Buddha-Statue-resized.jpg?w=376&dpr=2.6",
     caption: "Mahabodhi Temple, Bodh Gaya",
   },
   JH: {
     name: "Jharkhand",
-    image: "https://upload.wikimedia.org/wikipedia/commons/d/db/Hundru_falls_Ranchi.jpg",
-    caption: "Hundru Falls",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqsZSr-MlA7KHIeEkbhlbOiGyaFMvmFwHYzA&s",
+    caption: "Parasnath Hills",
   },
   OD: {
     name: "Odisha",
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Konark_Sun_Temple%2C_India.jpg",
+    image: "https://www.dailyartmagazine.com/wp-content/uploads/2024/06/Cover-Photo-768x464.jpg",
     caption: "Konark Sun Temple",
   },
   MP: {
@@ -89,7 +89,7 @@ export const stateImages: StateImageMap = {
   },
   AS: {
     name: "Assam",
-    image: "https://upload.wikimedia.org/wikipedia/commons/1/12/Kamakhya_Temple_Guwahati_Assam.jpg",
+    image: "https://s7ap1.scene7.com/is/image/incredibleindia/kamakhya-temple-dispur-assam-2-attr-hero?qlt=82&ts=1726741392778",
     caption: "Kamakhya Temple, Guwahati",
   },
   ML: {
