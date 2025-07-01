@@ -78,69 +78,83 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
 
             return (
               <div key={route.key}>
-                <Link href={route.route} passHref>
-                  <div
-                    className={`flex items-center justify-between px-3 py-4 rounded cursor-pointer transition-all ${active ? 'text-white font-semibold bg-gradient-to-r from-amber-500 to-yellow-500' : 'hover:bg-white/20'
-                      }`}
-                    onClick={isDropdown ? toggleDropdown : undefined}
-                  >
-                    <span className="flex items-center space-x-3">
-                      {route.icon}
-                      <motion.div
-                        key={route.name}
-                        initial="hidden"
-                        animate="visible"
-                        variants={{
-                          visible: { transition: { staggerChildren: 0.15 } },
-                          hidden: {},
-                        }}
-                      >
-                        {/* <motion.p
-                          key={active ? route.name : ''}
-                          className="description"
-                          variants={fadeRightVariant}
-                          transition={{ duration: 0.5, ease: "easeOut" }}
+                {!route.children || route.children.length === 0 ? (
+                  <Link href={route.route} passHref>
+                    <div
+                      className={`flex items-center justify-between px-3 py-4 rounded cursor-pointer transition-all ${active
+                        ? 'text-white font-semibold bg-gradient-to-r from-amber-500 to-yellow-500'
+                        : 'hover:bg-white/20'
+                        }`}
+                      onClick={isDropdown ? toggleDropdown : undefined}
+                    >
+                      <span className="flex items-center space-x-3">
+                        {route.icon}
+                        <motion.div
+                          key={route.name}
+                          initial="hidden"
+                          animate="visible"
+                          variants={{
+                            visible: { transition: { staggerChildren: 0.15 } },
+                            hidden: {},
+                          }}
                         >
-                          {!collapsed && <span className="text-base">{route.name}</span>}
-                        </motion.p> */}
+                          <motion.p
+                            key={active ? `active-${route.key}` : `inactive-${route.key}`}
+                            className="description"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, ease: 'easeOut' }}
+                          >
+                            {!collapsed && <span className="text-base">{route.name}</span>}
+                          </motion.p>
+                        </motion.div>
+                      </span>
+                      {!collapsed && isDropdown && (openDropdown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
+                    </div>
+                  </Link>
+                ) : (
+                  <div>
+                    <div
+                      onClick={toggleDropdown}
+                      className={`flex items-center justify-between px-3 py-4 rounded cursor-pointer transition-all ${active
+                        ? 'text-white font-semibold bg-gradient-to-r from-orange-300 to-amber-600'
+                        : 'hover:bg-white/20'
+                        }`}
+                    >
+                      <span className="flex items-center space-x-3">
+                        {route.icon}
+                        {!collapsed && <span className="text-base">{route.name}</span>}
+                      </span>
+                      {!collapsed && (openDropdown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
+                    </div>
 
-                        <motion.p
-                          key={active ? `active-${route.key}` : `inactive-${route.key}`} // forces re-mount only for newly active
-                          className="description"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.5, ease: "easeOut" }}
-                        >
-                          {!collapsed && <span className="text-base">{route.name}</span>}
-                        </motion.p>
-
-
-                      </motion.div>
-                    </span>
-                    {!collapsed && isDropdown && (openDropdown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
-                  </div>
-                </Link>
-
-                {/* Dropdown children */}
-                {!collapsed && openDropdown && isDropdown && (
-                  <div className="ml-8 space-y-1 text-sm">
-                    {route.children?.map((child) => (
-                      <Link href={child.route} key={child.route}>
-                        <div
-                          className={`block w-full text-left py-1 cursor-pointer ${isActive(child.route)
-                            ? 'text-orange-400 font-medium'
-                            : 'hover:text-orange-400'
-                            }`}
-                        >
-                          {child.name}
-                        </div>
-                      </Link>
-                    ))}
+                    {/* Dropdown children */}
+                    {!collapsed && openDropdown && isDropdown && (
+                      <div className="ml-8 space-y-1 text-sm">
+                        {route.children?.map((child) => (
+                          <Link href={child.route} key={child.route}>
+                            <div
+                              // className={`block w-full text-left py-1 cursor-pointer ${isActive(child.route)
+                              //     ? 'text-orange-400 font-medium'
+                              //     : 'hover:text-orange-400'
+                              //   }`}
+                              className={`flex items-center justify-between px-3 py-4 rounded cursor-pointer transition-all ${isActive(child.route)
+                                ? 'text-white font-semibold bg-gradient-to-r from-amber-500 to-yellow-500'
+                                : 'hover:bg-white/20'
+                                }`}
+                            >
+                              {child.name}
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
             );
           })}
+
         </nav>
       </div>
     </div>
