@@ -1,3 +1,4 @@
+import DynamicTable from '@/components/DynamicTable';
 import OrdersTable from '@/components/OrdersTable'
 import React from 'react'
 
@@ -18,6 +19,7 @@ const Templates = () => {
   return (
     <main className="min-h-screen bg-gray-100 p-4">
       <OrdersTable />
+      <DynamicTable />
     </main>
   )
 }

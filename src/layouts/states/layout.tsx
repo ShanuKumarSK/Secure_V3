@@ -45,9 +45,7 @@ const SideNavRoutes = [
     icon: <NewspaperIcon />,
     route: '/sor-reports',
     children: [
-      { name: 'Activity', route: '/sor-reports/activity' },
-      { name: 'Traffic', route: '/sor-reports/traffic' },
-      { name: 'Statistic', route: '/sor-reports/statistic' },
+      { name: 'State SoR', route: '/sor-reports/state-sor' },
     ],
   },
   {
