@@ -41,12 +41,17 @@ const fadeRightVariant = {
 
 const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
 
   const pathname = usePathname();
 
   const toggleSidebar = () => setCollapsed(!collapsed);
-  const toggleDropdown = () => setOpenDropdown(!openDropdown);
+  const toggleDropdown = (key: string) => {
+  setOpenDropdowns((prev) => ({
+    ...prev,
+    [key]: !prev[key],
+  }));
+};
 
   const isActive = (route: string) => {
     console.log(route, "Route")
@@ -56,7 +61,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
   return (
     <div
       className={`h-screen fixed flex flex-col justify-between bg-gradient-to-b from-cyan-700 to-cyan-600 text-white transition-all duration-300 ease-in-out
-      ${collapsed ? 'w-20' : 'w-64'} p-4`}
+      ${collapsed ? 'w-20' : 'w-64'} p-4 overflow-scroll pb-28`}
     >
       {/* Header */}
       <div>
@@ -85,7 +90,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
                         ? 'text-white font-semibold bg-gradient-to-r from-amber-500 to-yellow-500'
                         : 'hover:bg-white/20'
                         }`}
-                      onClick={isDropdown ? toggleDropdown : undefined}
+                      onClick={isDropdown ? (() => toggleDropdown(route.key)) : undefined}
                     >
                       <span className="flex items-center space-x-3">
                         {route.icon}
@@ -109,13 +114,13 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
                           </motion.p>
                         </motion.div>
                       </span>
-                      {!collapsed && isDropdown && (openDropdown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
+                      {!collapsed && isDropdown && (openDropdowns[route.key] ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
                     </div>
                   </Link>
                 ) : (
                   <div>
                     <div
-                      onClick={toggleDropdown}
+                      onClick={() => toggleDropdown(route.key)}
                       className={`flex items-center justify-between px-3 py-4 rounded cursor-pointer transition-all ${active
                         ? 'text-white font-semibold bg-gradient-to-r from-orange-300 to-amber-600'
                         : 'hover:bg-white/20'
@@ -125,11 +130,11 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
                         {route.icon}
                         {!collapsed && <span className="text-base">{route.name}</span>}
                       </span>
-                      {!collapsed && (openDropdown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
+                      {!collapsed && (openDropdowns[route.key] ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
                     </div>
 
                     {/* Dropdown children */}
-                    {!collapsed && openDropdown && isDropdown && (
+                    {!collapsed && openDropdowns[route.key] && isDropdown && (
                       <div className="ml-8 space-y-1 text-sm">
                         {route.children?.map((child) => (
                           <Link href={child.route} key={child.route}>

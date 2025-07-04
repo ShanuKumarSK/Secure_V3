@@ -14,7 +14,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   useEffect(() => {
     // Simulated auth state, or replace with real logic
-    const loggedIn = Boolean(localStorage.getItem("loggedIn"));
+    const loggedIn = Boolean(localStorage.getItem("userId"));
     setIsLoggedIn(loggedIn);
   }, []);
 

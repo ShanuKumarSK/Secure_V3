@@ -10,6 +10,7 @@ import {
 } from 'react-google-recaptcha-v3';
 import { generateCaptcha } from "@/utils/generateCaptcha";
 import LoopIcon from '@mui/icons-material/Loop';
+import { useRouter } from 'next/navigation';
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
@@ -19,6 +20,8 @@ export default function SignIn() {
   const [inputCaptcha, setInputCaptcha] = useState('');
   const [error, setError] = useState('');
   const [spinning, setSpinning] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     setCaptchaText(generateCaptcha());
@@ -35,13 +38,25 @@ export default function SignIn() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
 
+    // CAPTCHA validation
     if (inputCaptcha.trim().toUpperCase() !== captchaText.toUpperCase()) {
       setError('Invalid CAPTCHA');
       handleRefreshCaptcha();
       return;
     }
+
+    // ID and password validation
+    if (username === "Secure@gmail.com" && password === "secure@123") {
+      localStorage.setItem("userId", username);
+      router.push("/StateDashboard");
+    } else {
+      setError("Wrong ID or password");
+    }
   };
+
+  const isFormValid = username && password && inputCaptcha;
 
   return (
     <div className="relative min-h-screen flex items-center justify-center px-4">
@@ -115,14 +130,15 @@ export default function SignIn() {
               value={inputCaptcha}
               onChange={(e) => setInputCaptcha(e.target.value)}
             />
-
-            {error && <p className="text-red-400 text-sm">{error}</p>}
+            {error && <p className="text-red-400 text-sm mt-1">{error}</p>}
           </div>
-
-
-
-
-          <button type="submit" className="w-full py-2 cursor-pointer rounded-sm text-white font-medium bg-gradient-to-r from-cyan-900 to-teal-600 transition hover:from-teal-600 hover:to-cyan-900">
+          <button
+            type="submit"
+            disabled={!isFormValid}
+            className={`w-full py-2 rounded-sm font-medium transition ${isFormValid
+              ? "cursor-pointer text-white bg-gradient-to-r from-cyan-900 to-teal-600 hover:from-teal-600 hover:to-cyan-900"
+              : "cursor-not-allowed bg-gray-500 text-white/60"}`}
+          >
             Sign In
           </button>
         </form>

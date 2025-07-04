@@ -1,6 +1,7 @@
 import React from "react";
-import {StatCard} from "@/components/statCard";
-import {ChartCard} from "@/components/chartCard";
+import { ChartCard } from "@/components/chartCard";
+import { FaDollarSign } from 'react-icons/fa';
+import StatCard from "@/components/statCard";
 
 const Dashboard = () => {
     return (
@@ -15,6 +16,38 @@ const Dashboard = () => {
             {/* Stat Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard
+                    icon="description"
+                    iconColor="bg-green-500"
+                    title="No of state enrolled in SECURE"
+                    value={32}
+                    label="+55% than last week"
+                    progress={55}
+                />
+                <StatCard
+                    icon="description"
+                    iconColor="bg-gray-500"
+                    title="Today's Users"
+                    value={2300}
+                    label="+3% than last month"
+                    progress={3}
+                />
+                <StatCard
+                    icon="description"
+                    iconColor="bg-amber-500"
+                    title="Revenue"
+                    value={34000}
+                    label="+1% than yesterday"
+                    progress={1}
+                />
+                <StatCard
+                    icon="description"
+                    iconColor="bg-purple-500"
+                    title="Followers"
+                    value={91}
+                    label=""
+                    progress={0}
+                />
+                {/* <StatCard
                     icon="description"
                     title="No of state enrolled in SECURE"
                     value="32"
@@ -45,7 +78,7 @@ const Dashboard = () => {
                     change="Just updated"
                     iconBg="bg-pink-600"
                     changeColor="text-gray-500"
-                />
+                /> */}
             </div>
 
             {/* Charts */}

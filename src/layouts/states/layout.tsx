@@ -19,76 +19,96 @@ import {
 const SideNavRoutes = [
   {
     type: 'link',
-    name: 'National Dashboard',
-    key: 'dashboard',
+    name: 'Dashboard',
+    key: 'Dashboard',
     icon: <DashboardIcon />,
-    route: '/dashboard',
-  },
-  {
-    type: 'link',
-    name: 'States Dashboard',
-    key: 'state-dashboard',
-    icon: <DocumentScannerIcon />,
-    route: '/state-dashboard',
-  },
-  {
-    type: 'link',
-    name: 'Works Sanctioned',
-    key: 'works-sanctioned',
-    icon: <EqualizerIcon />,
-    route: '/works-sanctioned',
+    route: '/states/dashboard',
   },
   {
     type: 'dropdown',
-    name: 'SoR Reports',
-    key: 'sor-reports',
+    name: 'Estimates',
+    key: 'Estimates',
     icon: <NewspaperIcon />,
-    route: '/sor-reports',
+    route: '/states/estimates',
     children: [
-      { name: 'State SoR', route: '/sor-reports/state-sor' },
+      { name: 'MGNREGA Works', route: '/states/estimates/mgnrega-works' },
+      { name: 'Draft Estimate', route: '/states/estimates/draft-estimate' },
+      { name: 'Actual Estimate', route: '/states/estimates/actual-estimate' },
+      { name: 'AS Approved', route: '/states/estimates/as-approved' },
+      { name: 'TS Approved', route: '/states/estimates/ts-approved' },
+      { name: 'Inbox', route: '/states/estimates/inbox' },
+      { name: 'File Status', route: '/states/estimates/file-status' },
     ],
   },
   {
-    type: 'link',
-    name: 'Templates',
-    key: 'templates',
-    icon: <AssignmentIcon />,
-    route: '/templates',
+    type: 'dropdown',
+    name: 'Spill Over Works',
+    key: 'SpillOverWorks',
+    icon: <NewspaperIcon />,
+    route: '/states/spill-over-works',
+    children: [
+      { name: 'Spill Over', route: '/states/spill-over-works/spill-over' },
+      { name: 'Spill AS Approved', route: '/states/estimates/spill-as-approved' },
+      { name: 'Spill TS Approved', route: '/states/estimates/spill-ts-approved' },
+    ],
   },
   {
-    type: 'link',
-    name: 'CIB Report',
-    key: 'cib-report',
-    icon: <DescriptionIcon />,
-    route: '/cib-report',
+    type: 'dropdown',
+    name: 'Revised Works',
+    key: 'RevisedWorks',
+    icon: <NewspaperIcon />,
+    route: '/states/revised-works',
+    children: [
+      { name: 'Revise Estimate', route: '/states/revised-works/revise-estimate' },
+      { name: 'Inbox-R', route: '/states/revised-works/inbox-R' },
+      { name: 'AS Approved-R', route: '/states/revised-works/as-approved-R' },
+      { name: 'TS Approved-R', route: '/states/revised-works/ts-approved-R' },
+      { name: 'File Status-R', route: '/states/revised-works/file-status-R' },
+      { name: 'To be Revised', route: '/states/revised-works/to-be-revised' },
+      { name: 'Previous Year Works', route: '/states/revised-works/previous-year-works' },
+    ],
+  },
+   {
+    type: 'dropdown',
+    name: 'Publish',
+    key: 'Publish',
+    icon: <NewspaperIcon />,
+    route: '/states/publish',
+    children: [
+      { name: 'Pull Works', route: '/states/publish/pull-works' },
+    ],
   },
   {
-    type: 'link',
-    name: 'Works Category',
-    key: 'works-category',
-    icon: <SummarizeIcon />,
-    route: '/works-category',
+    type: 'dropdown',
+    name: 'Last Year Works',
+    key: 'LastYearWorks',
+    icon: <NewspaperIcon />,
+    route: '/states/last-year-works',
+    children: [
+      { name: 'To be Cancelled', route: '/states/last-year-works/to-be-cancelled' },
+    ],
   },
+
 ];
 
 
-export default function StatesLayout({ children, routes  }: { children: React.ReactNode, routes: any[] }) {
-//   const router = useRouter();
-//   const [loading, setLoading] = useState(true);
+export default function StatesLayout({ children, routes }: { children: React.ReactNode, routes: any[] }) {
+  //   const router = useRouter();
+  //   const [loading, setLoading] = useState(true);
 
   // Simulate authentication check (replace with real auth logic)
-//   useEffect(() => {
-//     const loggedIn = Boolean(localStorage.getItem("loggedIn")); // example
-//     if (!loggedIn) {
-//       router.push("/public"); // redirect to public dashboard if not logged in
-//     } else {
-//       setLoading(false);
-//     }
-//   }, [router]);
+  //   useEffect(() => {
+  //     const loggedIn = Boolean(localStorage.getItem("loggedIn")); // example
+  //     if (!loggedIn) {
+  //       router.push("/public"); // redirect to public dashboard if not logged in
+  //     } else {
+  //       setLoading(false);
+  //     }
+  //   }, [router]);
 
-//   if (loading) {
-//     return <div>Loading...</div>;
-//   }
+  //   if (loading) {
+  //     return <div>Loading...</div>;
+  //   }
 
   return (
     <div>

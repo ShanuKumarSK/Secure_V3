@@ -122,18 +122,17 @@ function AppTable<T extends Record<string, any>>({
   onRowsPerPageChange,
 }: AppTableProps<T>) {
   return (
-    <Paper className="rounded shadow overflow-hidden">
+    <Paper className="rounded shadow-lg overflow-hidden">
       <TableContainer>
         <Table>
-          <TableHead className="bg-gray-100">
+          <TableHead className="bg-cyan-600 shadow-lg">
             <TableRow>
               {columns.map((col, index) => (
                 <TableCell
                   key={index}
                   align={col.align || 'left'}
-                  className="font-semibold text-gray-700 text-base"
                 >
-                  {col.label}
+                  <h5 className="font-semibold text-white text-base">{col.label}</h5>
                 </TableCell>
               ))}
             </TableRow>

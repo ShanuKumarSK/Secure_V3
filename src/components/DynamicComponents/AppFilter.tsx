@@ -46,7 +46,7 @@ const AppFilter = ({ children, onFilter, onReset }: Props) => {
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: '1px', opacity: 1 }}
                             transition={{ duration: 0.05 }}
-                            className="overflow-hidden bg-gray-50 rounded p-4 shadow"
+                            className="overflow-hidden bg-gray-50 rounded p-4 shadow-lg"
                         >
                             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                 {children}
