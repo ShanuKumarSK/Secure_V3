@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: 	#dcfafe;
+  --background: #dcfafe;
   --foreground: #171717;
 }
 
@@ -24,6 +24,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+::-webkit-scrollbar {
+  display: none;
+  /* Hides the scrollbar */
+}
+
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 
 
 /* code {

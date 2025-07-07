@@ -61,7 +61,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
   return (
     <div
       className={`h-screen fixed flex flex-col justify-between bg-gradient-to-b from-cyan-700 to-cyan-600 text-white transition-all duration-300 ease-in-out
-      ${collapsed ? 'w-20' : 'w-64'} p-4 overflow-scroll pb-28`}
+      ${collapsed ? 'w-20' : 'w-64'} p-4 pb-28 overflow-auto scrollbar-hide`}
     >
       {/* Header */}
       <div>
