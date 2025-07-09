@@ -1,4 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 @import "tailwindcss";
+
+
+body {
+  /* font-family: 'Nunito', sans-serif; */
+  font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+  /* font-family: 'Ubuntu', sans-serif; */
+}
+
 
 :root {
   --background: #dcfafe;
@@ -22,7 +35,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 ::-webkit-scrollbar {

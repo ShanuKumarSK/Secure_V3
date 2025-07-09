@@ -15,6 +15,8 @@ import {
   Description as DescriptionIcon,
   Summarize as SummarizeIcon
 } from '@mui/icons-material';
+import Footer from "@/components/footer";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const SideNavRoutes = [
   {
@@ -114,7 +116,9 @@ export default function StatesLayout({ children, routes }: { children: React.Rea
     <div>
       <TopNavbar routes={routes} />
       <SideNavbar routes={SideNavRoutes} />
+       <Breadcrumb />
       <main style={{ marginLeft: 200, marginTop: 50, padding: 20 }}>{children}</main>
+      <Footer />
     </div>
   );
 }

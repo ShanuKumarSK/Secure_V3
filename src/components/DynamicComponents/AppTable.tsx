@@ -94,6 +94,7 @@ import {
   Paper,
   TablePagination,
 } from '@mui/material';
+import { motion } from "framer-motion";
 
 export type Column<T> = {
   key: keyof T | string;
@@ -125,25 +126,63 @@ function AppTable<T extends Record<string, any>>({
     <Paper className="rounded shadow-lg overflow-hidden">
       <TableContainer>
         <Table>
-          <TableHead className="bg-cyan-600 shadow-lg">
+          <TableHead className="bg-gradient-to-b from-cyan-700 to-cyan-600">
             <TableRow>
               {columns.map((col, index) => (
                 <TableCell
                   key={index}
                   align={col.align || 'left'}
                 >
-                  <h5 className="font-semibold text-white text-base">{col.label}</h5>
+                  <motion.div
+                    key={index}
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                      visible: { transition: { staggerChildren: 0.15 } },
+                      hidden: {},
+                    }}
+                  >
+                    <motion.p
+                      key={`header-${index}`}
+                      className="description"
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                    >
+                      <a className="font-semibold text-white text-base">{col.label}</a>
+                    </motion.p>
+                  </motion.div>
+
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className='shadow-xl'>
             {data.length > 0 ? (
               data.map((row, rowIndex) => (
-                <TableRow key={rowIndex} className="hover:bg-gray-50">
+                <TableRow key={rowIndex} className="hover:bg-cyan-50 even:bg-white odd:bg-gray-100 ">
                   {columns.map((col, colIndex) => (
                     <TableCell key={colIndex} align={col.align || 'left'}>
-                      {col.render ? col.render(row) : row[col.key as keyof T]}
+                      <motion.div
+                        key={rowIndex}
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                          visible: { transition: { staggerChildren: 0.15 } },
+                          hidden: {},
+                        }}
+                      >
+                        <motion.p
+                          key={`row-${rowIndex}-col-${colIndex}`}
+                          className="description"
+                          initial={{ opacity: 0, x: 50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                        >
+                          {col.render ? col.render(row) : row[col.key as keyof T]}
+                        </motion.p>
+                      </motion.div>
+
                     </TableCell>
                   ))}
                 </TableRow>
@@ -159,15 +198,30 @@ function AppTable<T extends Record<string, any>>({
         </Table>
       </TableContainer>
 
-      <TablePagination
-        component="div"
-        count={totalCount}
-        page={page}
-        onPageChange={(_, newPage) => onPageChange(newPage)}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={(e) => onRowsPerPageChange(parseInt(e.target.value))}
-        rowsPerPageOptions={[5, 10, 25, 50]}
-      />
+      <div className='bg-gradient-to-b from-cyan-600 to-cyan-700'>
+        <TablePagination
+          component="div"
+          count={totalCount}
+          page={page}
+          onPageChange={(_, newPage) => onPageChange(newPage)}
+          rowsPerPage={rowsPerPage}
+          onRowsPerPageChange={(e) => onRowsPerPageChange(parseInt(e.target.value))}
+          rowsPerPageOptions={[5, 10, 25, 50]}
+          sx={{
+            color: '#ffffff', // Change text color
+            '& .MuiTablePagination-selectLabel': {
+              color: '#ffffff',
+            },
+            '& .MuiTablePagination-displayedRows': {
+              color: '#ffffff',
+            },
+            '& .MuiSvgIcon-root': {
+              color: '#ffffff',
+            },
+          }}
+        />
+      </div>
+
     </Paper>
   );
 }

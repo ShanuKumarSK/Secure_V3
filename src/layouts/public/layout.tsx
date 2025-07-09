@@ -17,6 +17,8 @@ import {
   Description as DescriptionIcon,
   Summarize as SummarizeIcon
 } from '@mui/icons-material';
+import Footer from "@/components/footer";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const SideNavRoutes = [
   {
@@ -87,14 +89,17 @@ export default function PublicLayout({ children, routes }: PublicLayoutProps) {
   return (
     <div >
       <TopNavbar routes={routes} />
+
       {!hideSidebar && <SideNavbar routes={SideNavRoutes} />}
       <main
         style={{
           marginLeft: hideSidebar ? 0 : 256,
         }}
       >
+        {!hideSidebar && <Breadcrumb />}
         {children}
       </main>
+      <Footer />
     </div>
   );
 }

@@ -15,11 +15,11 @@ type Props = {
 const AppFilter = ({ children, onFilter, onReset }: Props) => {
     const [showFilters, setShowFilters] = useState(false);
     return (
-        <div className="p-4 rounded">
+        <div className="py-4 rounded">
             {/* Search Toggle */}
             <div className='mb-4' >
                 <div className="w-full flex justify-between items-center bg-gray-50 rounded-lg shadow-lg cursor-pointer" onClick={() => setShowFilters(!showFilters)}>
-                    <button className="bg-cyan-600 text-white px-8 py-3 rounded-br-full flex items-center justify-center gap-3 cursor-pointer whitespace-nowrap">
+                    <button className="bg-gradient-to-br from-cyan-700 to-cyan-500 text-white px-8 py-3 rounded-br-full flex items-center justify-center gap-3 cursor-pointer whitespace-nowrap">
                         {
                             showFilters
                                 ?
@@ -62,7 +62,7 @@ const AppFilter = ({ children, onFilter, onReset }: Props) => {
                                 </Tooltip>
                                 <Tooltip title="Reset" arrow>
                                     <button
-                                        className="w-12 h-12 bg-red-400 text-white rounded-full flex items-center justify-center cursor-pointer"
+                                        className="w-12 h-12 bg-gradient-to-br from-red-700 to-orange-500 text-white rounded-full flex items-center justify-center cursor-pointer"
                                         onClick={onReset}
 
                                     >

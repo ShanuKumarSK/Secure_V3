@@ -11,6 +11,8 @@ import {
 import { generateCaptcha } from "@/utils/generateCaptcha";
 import LoopIcon from '@mui/icons-material/Loop';
 import { useRouter } from 'next/navigation';
+import { motion } from "framer-motion";
+import { once } from "events";
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
@@ -48,9 +50,11 @@ export default function SignIn() {
     }
 
     // ID and password validation
-    if (username === "Secure@gmail.com" && password === "secure@123") {
+    const StaticUserName = process.env.NEXT_PUBLIC_EMAIL
+    const StaticUserPassword = process.env.NEXT_PUBLIC_PASSWORD
+    if (username === StaticUserName && password === StaticUserPassword) {
       localStorage.setItem("userId", username);
-      router.push("/StateDashboard");
+      router.push("/states/dashboard");
     } else {
       setError("Wrong ID or password");
     }
@@ -88,9 +92,24 @@ export default function SignIn() {
         </div>
 
         {/* Title */}
-        <h2 className="text-center text-white text-lg sm:text-xl font-semibold mb-6">
+        <motion.h2
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 1, ease: "easeInOut", repeat: 0 }}
+          className="text-center text-white text-lg sm:text-xl font-semibold mb-6"
+        >
           Login
-        </h2>
+        </motion.h2>
+        <motion.h2
+          className=""
+          initial={{ y: -300, opacity: 0 }}
+          animate={{ y: [-300, 0, -150, 0, -75, 0, -25, 0], opacity: 1 }}
+          transition={{
+            duration: 1.5,
+            ease: [0.22, 1, 0.36, 1], // easeOutBounce-like
+          }}
+        >
+          UserName
+        </motion.h2>
 
         {/* Form */}
         <form className="space-y-4" onSubmit={handleSubmit}>
