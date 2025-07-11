@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-tr from-gray-800 to-gray-900 text-gray-300 py-10 px-4 sm:px-8 lg:px-16">
+    <footer className="bg-gradient-to-tr from-cyan-800 to-cyan-900 text-gray-300 py-10 px-4 sm:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-gray-600 pb-8">
           {/* Left Column */}
@@ -41,7 +41,7 @@ const Footer = () => {
             © Copyright <span className="font-semibold text-white">Ministry of Rural Development, Government of India</span>. All rights reserved.
           </div>
           <div>
-            Developed by <a href="https://kerala.nic.in" target="_blank" className="hover:text-white hover:underline">NIC Kerala</a>
+            Developed by <a href="https://www.nic.in" target="_blank" className="hover:text-white hover:underline">NIC</a>
           </div>
         </div>
       </div>

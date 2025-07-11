@@ -10,6 +10,10 @@ import logout from "@/utils/logout";
 import { useRouter } from "next/navigation";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { motion } from "framer-motion";
+import FloatingTextReveal from "@/components/TransitionComponents/FloatingTextReveal";
+import RandomDirectionText from "../TransitionComponents/RandomDirectionText";
+import Rotating from "../TransitionComponents/Rotating";
+import FadeIn from "../TransitionComponents/FadeIn";
 
 type Route = {
   type: string;
@@ -56,7 +60,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
   console.log(routes, "Routes in TopNavbar");
 
   return (
-    <header className="bg-sky-50 backdrop-blur-md border border-white/20 shadow-lg sticky top-0 z-50">
+    <header className="bg-[#eff7f5] backdrop-blur-md border border-white/20 shadow-lg sticky top-0 z-50">
       {/* Top Bar */}
       <div className="bg-cyan-700 text-white text-sm flex justify-between items-center px-36 py-1">
         <span>A Digital India Initiative</span>
@@ -76,9 +80,20 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
       <div className="bg-white/10 backdrop-blur-md border border-white/20 flex flex-wrap items-center justify-between px-36 py-2">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3">
+          {/* <Rotating angle={360} speed={2} repeat={Infinity}> */}
           <Image src={Emblem} alt="Emblem" width={36} height={36} />
+          {/* </Rotating> */}
           <div className="flex flex-col items-left gap-1">
-            <h3 className="text-lg text-cyan-900 font-bold leading-none">Software for Estimate Calculation Using <br /> Rural Rates for Employment</h3>
+            {/* <h3 className="text-lg text-cyan-900 font-bold leading-none">
+              <FloatingTextReveal sentence="Software for Estimate Calculation Using" angle={180} distance={200} speed={0.4} />
+              <br />
+              <FloatingTextReveal sentence="Rural Rates for Employment" angle={225} distance={200} speed={0.4} />
+            </h3> */}
+            <h3 className="text-lg text-cyan-900 font-bold leading-none">
+              <RandomDirectionText sentence="Software for Estimate Calculation Using" />
+              <br />
+              <RandomDirectionText sentence="Rural Rates for Employment" />
+            </h3>
             <span className="text-xs text-sky-700 font-semibold">
               Ministry of Rural Development
             </span>
@@ -87,7 +102,20 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
 
         {/* Navigation Links */}
         <nav className="flex items-center gap-6 mt-2 sm:mt-0 tracking-wider text-base text-cyan-900">
-          <motion.div
+
+          <FadeIn stagger={0.2} direction="left" duration={1.5}>
+            <Link href="/" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Home</Link>
+          </FadeIn>
+          <FadeIn stagger={0.2} direction="left" duration={1.2}>
+            <Link href="/about" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">About</Link>
+          </FadeIn>
+          <FadeIn stagger={0.2} direction="left" duration={0.9}>
+            <Link href="/services" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Services</Link>
+          </FadeIn>
+          <FadeIn stagger={0.2} direction="left" duration={0.6}>
+            <Link href="/dashboard" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Reports</Link>
+          </FadeIn>
+          {/* <motion.div
             key={1}
             initial="hidden"
             animate="visible"
@@ -133,7 +161,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
             >
               <Link href="/dashboard" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Reports</Link>
             </motion.p>
-          </motion.div>
+          </motion.div> */}
 
 
 

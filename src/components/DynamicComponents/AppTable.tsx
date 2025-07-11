@@ -95,6 +95,7 @@ import {
   TablePagination,
 } from '@mui/material';
 import { motion } from "framer-motion";
+import FadeIn from '../TransitionComponents/FadeIn';
 
 export type Column<T> = {
   key: keyof T | string;
@@ -133,26 +134,7 @@ function AppTable<T extends Record<string, any>>({
                   key={index}
                   align={col.align || 'left'}
                 >
-                  <motion.div
-                    key={index}
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                      visible: { transition: { staggerChildren: 0.15 } },
-                      hidden: {},
-                    }}
-                  >
-                    <motion.p
-                      key={`header-${index}`}
-                      className="description"
-                      initial={{ opacity: 0, x: -50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8, ease: 'easeOut' }}
-                    >
-                      <a className="font-semibold text-white text-base">{col.label}</a>
-                    </motion.p>
-                  </motion.div>
-
+                  <FadeIn stagger={0.2} direction="left" duration={0.6} className="font-semibold text-white text-base">{col.label}</FadeIn>
                 </TableCell>
               ))}
             </TableRow>
@@ -163,26 +145,7 @@ function AppTable<T extends Record<string, any>>({
                 <TableRow key={rowIndex} className="hover:bg-cyan-50 even:bg-white odd:bg-gray-100 ">
                   {columns.map((col, colIndex) => (
                     <TableCell key={colIndex} align={col.align || 'left'}>
-                      <motion.div
-                        key={rowIndex}
-                        initial="hidden"
-                        animate="visible"
-                        variants={{
-                          visible: { transition: { staggerChildren: 0.15 } },
-                          hidden: {},
-                        }}
-                      >
-                        <motion.p
-                          key={`row-${rowIndex}-col-${colIndex}`}
-                          className="description"
-                          initial={{ opacity: 0, x: 50 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.8, ease: 'easeOut' }}
-                        >
-                          {col.render ? col.render(row) : row[col.key as keyof T]}
-                        </motion.p>
-                      </motion.div>
-
+                      <FadeIn stagger={0.2} direction="right" duration={0.6}>{col.render ? col.render(row) : row[col.key as keyof T]}</FadeIn>
                     </TableCell>
                   ))}
                 </TableRow>

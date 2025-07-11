@@ -46,7 +46,7 @@ const lineColorMap = {
 
 export const ChartCard: React.FC<ChartCardProps> = ({ title, subtitle, color }) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-4">
+    <div className="bg-white rounded-xl shadow-lg p-4">
       <div className={`rounded-xl p-4 mb-2 ${colorMap[color]}`}>
         <ResponsiveContainer width="100%" height={150}>
           <LineChart data={data}>

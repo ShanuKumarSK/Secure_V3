@@ -19,6 +19,7 @@ import {
 } from '@mui/icons-material';
 import { motion } from "framer-motion";
 import SecureLogo from '@/assets/images/secure-logo.png'; // adjust as needed
+import FadeIn from '../TransitionComponents/FadeIn';
 
 type Route = {
   type: string;
@@ -47,11 +48,11 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
 
   const toggleSidebar = () => setCollapsed(!collapsed);
   const toggleDropdown = (key: string) => {
-  setOpenDropdowns((prev) => ({
-    ...prev,
-    [key]: !prev[key],
-  }));
-};
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
 
   const isActive = (route: string) => {
     console.log(route, "Route")
@@ -94,25 +95,7 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
                     >
                       <span className="flex items-center space-x-3">
                         {route.icon}
-                        <motion.div
-                          key={route.name}
-                          initial="hidden"
-                          animate="visible"
-                          variants={{
-                            visible: { transition: { staggerChildren: 0.15 } },
-                            hidden: {},
-                          }}
-                        >
-                          <motion.p
-                            key={active ? `active-${route.key}` : `inactive-${route.key}`}
-                            className="description"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, ease: 'easeOut' }}
-                          >
-                            {!collapsed && <span className="text-base">{route.name}</span>}
-                          </motion.p>
-                        </motion.div>
+                        <FadeIn stagger={0.2} direction="left" duration={0.5}>{!collapsed && <span className="text-base">{route.name}</span>}</FadeIn>
                       </span>
                       {!collapsed && isDropdown && (openDropdowns[route.key] ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
                     </div>
@@ -128,21 +111,15 @@ const SideNavbar: React.FC<SideNavbarProps> = ({ routes }) => {
                     >
                       <span className="flex items-center space-x-3">
                         {route.icon}
-                        {!collapsed && <span className="text-base">{route.name}</span>}
+                        <FadeIn stagger={0.2} direction="left" duration={0.5}>{!collapsed && <span className="text-base">{route.name}</span>}</FadeIn>
                       </span>
                       {!collapsed && (openDropdowns[route.key] ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
                     </div>
-
-                    {/* Dropdown children */}
                     {!collapsed && openDropdowns[route.key] && isDropdown && (
                       <div className="ml-8 space-y-1 text-sm">
                         {route.children?.map((child) => (
                           <Link href={child.route} key={child.route}>
                             <div
-                              // className={`block w-full text-left py-1 cursor-pointer ${isActive(child.route)
-                              //     ? 'text-orange-400 font-medium'
-                              //     : 'hover:text-orange-400'
-                              //   }`}
                               className={`flex items-center justify-between px-3 py-4 rounded cursor-pointer transition-all ${isActive(child.route)
                                 ? 'text-white font-semibold bg-gradient-to-r from-amber-500 to-yellow-500'
                                 : 'hover:bg-white/20'

@@ -11,8 +11,7 @@ import {
 import { generateCaptcha } from "@/utils/generateCaptcha";
 import LoopIcon from '@mui/icons-material/Loop';
 import { useRouter } from 'next/navigation';
-import { motion } from "framer-motion";
-import { once } from "events";
+import Debounce from "@/components/TransitionComponents/Debounce";
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
@@ -92,24 +91,9 @@ export default function SignIn() {
         </div>
 
         {/* Title */}
-        <motion.h2
-          animate={{ rotate: [0, 360] }}
-          transition={{ duration: 1, ease: "easeInOut", repeat: 0 }}
-          className="text-center text-white text-lg sm:text-xl font-semibold mb-6"
-        >
-          Login
-        </motion.h2>
-        <motion.h2
-          className=""
-          initial={{ y: -300, opacity: 0 }}
-          animate={{ y: [-300, 0, -150, 0, -75, 0, -25, 0], opacity: 1 }}
-          transition={{
-            duration: 1.5,
-            ease: [0.22, 1, 0.36, 1], // easeOutBounce-like
-          }}
-        >
-          UserName
-        </motion.h2>
+        <Debounce yOffset={-300} bounces={8} duration={1.5}>
+          <h1 className="text-center text-white text-2xl sm:text-2xl font-semibold mb-6">Login</h1>
+        </Debounce>
 
         {/* Form */}
         <form className="space-y-4" onSubmit={handleSubmit}>
