@@ -1,86 +1,3 @@
-// import React from 'react'
-// import { FaDownload, FaEdit, FaEye, FaTrash } from 'react-icons/fa'
-
-// type Course = {
-//     id: number;
-//     name: string;
-//     category: string;
-//     mode: string;
-//     hours: number;
-//     eligibility: string;
-// };
-
-// const initialCourses: Course[] = [
-//     { id: 1, name: 'computer networking', category: 'Compliance training', mode: 'Hybrid', hours: 500, eligibility: 'Pre Metric (10th & Below)' },
-//     { id: 2, name: 'asd', category: 'Electronic and Instrumentation', mode: 'Offline', hours: 12, eligibility: 'Pre Metric (10th & Below)' },
-// ];
-
-
-// const AppTable = () => {
-
-
-//     return (
-//         <div>{/* Table Section */}
-//             <div className="bg-white shadow rounded overflow-x-auto">
-//                 <div className="flex justify-between items-center">
-//                     <div className='bg-lime-700 text-white px-6 py-3 rounded-tr-full'>
-//                         <h2 className="text-lg font-bold">List of Templates</h2>
-
-//                     </div>
-//                     <div className="flex items-center gap-4 mr-2 ">
-//                         <button className="flex items-center gap-1 text-green-900 cursor-pointer">
-//                             <FaDownload />
-//                             Download Excel
-//                         </button>
-//                     </div>
-//                 </div>
-//                 <table className="w-full">
-//                     <thead className="bg-green-100 text-sm text-gray-700">
-//                         <tr>
-//                             <th className="p-3 text-left">Course Name</th>
-//                             <th className="p-3 text-left">Course Category</th>
-//                             <th className="p-3 text-left">Course Mode</th>
-//                             <th className="p-3 text-left">Training Hours</th>
-//                             <th className="p-3 text-left">Eligibility</th>
-//                             <th className="p-3 text-left">Action</th>
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-//                         {initialCourses.map((course) => (
-//                             <tr key={course.id} className="border-t hover:bg-gray-50">
-//                                 <td className="p-3">{course.name}</td>
-//                                 <td className="p-3">{course.category}</td>
-//                                 <td className="p-3">{course.mode}</td>
-//                                 <td className="p-3">{course.hours}</td>
-//                                 <td className="p-3">{course.eligibility}</td>
-//                                 <td className="p-3 flex gap-3 items-center text-lg">
-//                                     <FaEye className="text-gray-700 cursor-pointer" />
-//                                     <FaEdit className="text-green-700 cursor-pointer" />
-//                                     <FaTrash className="text-red-600 cursor-pointer" />
-//                                 </td>
-//                             </tr>
-//                         ))}
-//                     </tbody>
-//                 </table>
-//                 <div className="flex justify-end items-center gap-2 p-3">
-//                     <label htmlFor="pagination" className="text-sm text-gray-600">Items per page:</label>
-//                     <select id="pagination" className="border rounded px-2 py-1 text-sm">
-//                         <option>10</option>
-//                         <option>25</option>
-//                     </select>
-//                     <button className="px-2">◀</button>
-//                     <span className="border rounded px-3 py-1 text-sm bg-gray-100">1</span>
-//                     <button className="px-2">▶</button>
-//                 </div>
-//             </div></div>
-//     )
-// }
-
-// export default AppTable
-
-
-
-
 'use client';
 
 import React from 'react';
@@ -94,14 +11,17 @@ import {
   Paper,
   TablePagination,
 } from '@mui/material';
-import { motion } from "framer-motion";
 import FadeIn from '../TransitionComponents/FadeIn';
+import { MdDelete, MdEdit } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
 
-export type Column<T> = {
+type Column<T> = {
   key: keyof T | string;
   label: string;
   align?: 'left' | 'center' | 'right';
   render?: (row: T) => React.ReactNode;
+  type?: 'text' | 'action';
+  actions?: (ActionButton<T> | keyof typeof actionMap)[];
 };
 
 type AppTableProps<T> = {
@@ -112,6 +32,34 @@ type AppTableProps<T> = {
   totalCount: number;
   onPageChange: (newPage: number) => void;
   onRowsPerPageChange: (newRowsPerPage: number) => void;
+  actionHandlers?: Record<string, (row: T) => void>; // New
+};
+
+const actionMap = {
+  edit: {
+    icon: <MdEdit />,
+    color: 'bg-yellow-500 text-white',
+    tooltip: 'Edit this row',
+  },
+  delete: {
+    icon: <MdDelete />,
+    color: 'bg-red-500 text-white',
+    tooltip: 'Delete this row',
+  },
+  view: {
+    icon: <FaEye />,
+    color: 'bg-cyan-500 text-white',
+    tooltip: 'View details',
+  },
+};
+
+
+type ActionButton<T> = {
+  label: string;
+  onClick: (row: T) => void;
+  icon?: React.ReactNode;
+  color?: string;
+  tooltip?: string;
 };
 
 function AppTable<T extends Record<string, any>>({
@@ -122,6 +70,7 @@ function AppTable<T extends Record<string, any>>({
   totalCount,
   onPageChange,
   onRowsPerPageChange,
+  actionHandlers,
 }: AppTableProps<T>) {
   return (
     <Paper className="rounded shadow-lg overflow-hidden">
@@ -139,14 +88,47 @@ function AppTable<T extends Record<string, any>>({
               ))}
             </TableRow>
           </TableHead>
-          <TableBody className='shadow-xl'>
+          <TableBody className="shadow-xl">
             {data.length > 0 ? (
               data.map((row, rowIndex) => (
-                <TableRow key={rowIndex} className="hover:bg-cyan-50 even:bg-white odd:bg-gray-100 ">
+                <TableRow key={rowIndex} className="hover:bg-cyan-50 even:bg-white odd:bg-gray-100">
                   {columns.map((col, colIndex) => (
                     <TableCell key={colIndex} align={col.align || 'left'}>
-                      <FadeIn stagger={0.2} direction="right" duration={0.6}>{col.render ? col.render(row) : row[col.key as keyof T]}</FadeIn>
+                      {col.type === 'action' && Array.isArray(col.actions) ? (
+                        <div className="flex justify-center gap-2">
+                          {col.actions.map((actionDef, index) => {
+                            const actionKey = typeof actionDef === 'string'
+                              ? actionDef
+                              : actionDef.label.toLowerCase();
+                            const baseAction = actionMap[actionKey as keyof typeof actionMap];
+                            const handleClick = actionHandlers?.[actionKey];
+                            // if (!baseAction || !handleClick) return null;
+
+                            // 🔥 Map 'edit' => 'isEdit', 'delete' => 'isDelete', etc.
+                            const permissionKey = `is${actionKey.charAt(0).toUpperCase()}${actionKey.slice(1)}`;
+                            const isAllowed = row?.[permissionKey] !== false;
+
+                            if (!baseAction || !handleClick) return null;
+
+                            return (
+                              <button
+                                key={index}
+                                onClick={() => handleClick(row)}
+                                // className={`p-2 rounded cursor-pointer ${baseAction.color || 'bg-blue-600 text-white cursor-pointer'}`}
+                                className={`p-1 rounded flex items-center justify-center gap-1 ${baseAction.color} ${!isAllowed ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                title={baseAction.tooltip}
+                                disabled={!isAllowed}
+                              >
+                                {baseAction.icon}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <FadeIn>{col.render ? col.render(row) : row[col.key as keyof T]}</FadeIn>
+                      )}
                     </TableCell>
+
                   ))}
                 </TableRow>
               ))
@@ -160,7 +142,6 @@ function AppTable<T extends Record<string, any>>({
           </TableBody>
         </Table>
       </TableContainer>
-
       <div className='bg-gradient-to-b from-cyan-600 to-cyan-700'>
         <TablePagination
           component="div"
@@ -171,7 +152,7 @@ function AppTable<T extends Record<string, any>>({
           onRowsPerPageChange={(e) => onRowsPerPageChange(parseInt(e.target.value))}
           rowsPerPageOptions={[5, 10, 25, 50]}
           sx={{
-            color: '#ffffff', // Change text color
+            color: '#ffffff',
             '& .MuiTablePagination-selectLabel': {
               color: '#ffffff',
             },
@@ -184,9 +165,9 @@ function AppTable<T extends Record<string, any>>({
           }}
         />
       </div>
-
     </Paper>
   );
 }
 
 export default AppTable;
+export type { AppTableProps, Column, actionMap, ActionButton };
