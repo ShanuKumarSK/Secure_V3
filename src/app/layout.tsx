@@ -5,6 +5,8 @@ import LayoutWrapper from "@/layouts/LayoutWrapper";
 import Script from "next/script";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { AccessibilityProvider } from '@/context/AccessibilityProvider';
+import AccessibilityPanel from '@/components/AccessibilityPanel';
 import {
   GoogleReCaptchaProvider,
 } from 'react-google-recaptcha-v3';
@@ -35,11 +37,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Script src="https://translation-plugin.bhashini.co.in/v2/website_translation_utility.js" data-pos-x="5" data-pos-y="10" />
-        {/* <GoogleReCaptchaProvider reCaptchaKey=""> */}
+        <AccessibilityProvider>
+          <Script src="https://translation-plugin.bhashini.co.in/v2/website_translation_utility.js" data-pos-x="5" data-pos-y="10" />
+          {/* <GoogleReCaptchaProvider reCaptchaKey=""> */}
           <LayoutWrapper>{children}</LayoutWrapper>
           <ToastContainer position="top-right" autoClose={3000} />
-        {/* </GoogleReCaptchaProvider> */}
+          {/* </GoogleReCaptchaProvider> */}
+        </AccessibilityProvider>
       </body>
     </html>
   );

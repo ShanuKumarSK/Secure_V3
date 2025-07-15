@@ -160,3 +160,53 @@ body {
     }
   }
 }
+
+
+/* Tailwind base and your existing styles above this */
+
+.high-contrast {
+  filter: contrast(200%) !important;
+}
+
+.invert {
+  filter: invert(100%) !important;
+}
+
+.saturate {
+  filter: saturate(200%) !important;
+}
+
+.font-increase * {
+  font-size: 1.25rem !important;
+}
+
+.font-decrease * {
+  font-size: 0.85rem !important;
+}
+
+.text-spacing * {
+  letter-spacing: 0.1em !important;
+}
+
+.line-height * {
+  line-height: 2 !important;
+}
+
+.hide-images img {
+  display: none !important;
+}
+
+.big-cursor * {
+  cursor: url('https://cdn-icons-png.flaticon.com/128/892/892692.png'), auto !important;
+}
+
+.highlight-links a {
+  outline: 2px dashed red;
+  background: yellow;
+}
+
+html.font-size-0 { font-size: 12px; }
+html.font-size-1 { font-size: 14px; }
+html.font-size-2 { font-size: 16px; } /* default */
+html.font-size-3 { font-size: 18px; }
+html.font-size-4 { font-size: 20px; }

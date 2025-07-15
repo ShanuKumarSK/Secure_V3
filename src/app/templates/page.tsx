@@ -17,16 +17,16 @@ const Templates = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [data, setData] = useState([
-    { id: 1, state: 'Bihar', period: 'Q1', totalOrders: 50,isEdit: false,
-    isDelete: true,
-    isView: true, },
-    { id: 2, state: 'Odisha', period: 'Q2', totalOrders: 30 },
-    { id: 3, state: 'Bihar', period: 'Q2', totalOrders: 60 },
-    { id: 4, state: 'Odisha', period: 'Q1', totalOrders: 20 },
-    { id: 5, state: 'Bihar', period: 'Q1', totalOrders: 50 },
-    { id: 6, state: 'Odisha', period: 'Q2', totalOrders: 30 },
-    { id: 7, state: 'Bihar', period: 'Q2', totalOrders: 60 },
-    { id: 8, state: 'Odisha', period: 'Q1', totalOrders: 20 },
+    {
+      id: 1, state: 'Bihar', period: 'Q1', totalOrders: 50, isEdit: false, isDelete: true, isView: true,
+    },
+    { id: 2, state: 'Odisha', period: 'Q2', totalOrders: 30, isEdit: true, isDelete: false, isView: true },
+    { id: 3, state: 'Bihar', period: 'Q2', totalOrders: 60, isEdit: false, isDelete: true, isView: false },
+    { id: 4, state: 'Odisha', period: 'Q1', totalOrders: 20, isEdit: false, isDelete: false, isView: true },
+    { id: 5, state: 'Bihar', period: 'Q1', totalOrders: 50, isEdit: true, isDelete: true, isView: false },
+    { id: 6, state: 'Odisha', period: 'Q2', totalOrders: 30, isEdit: false, isDelete: false, isView: true },
+    { id: 7, state: 'Bihar', period: 'Q2', totalOrders: 60, isEdit: true, isDelete: true, isView: false },
+    { id: 8, state: 'Odisha', period: 'Q1', totalOrders: 20, isEdit: true, isDelete: false, isView: false },
   ]);
 
   const handleFilter = () => {

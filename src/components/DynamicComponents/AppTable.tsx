@@ -38,7 +38,7 @@ type AppTableProps<T> = {
 const actionMap = {
   edit: {
     icon: <MdEdit />,
-    color: 'bg-yellow-500 text-white',
+    color: 'bg-yellow-600 text-white',
     tooltip: 'Edit this row',
   },
   delete: {
@@ -48,7 +48,7 @@ const actionMap = {
   },
   view: {
     icon: <FaEye />,
-    color: 'bg-cyan-500 text-white',
+    color: 'bg-cyan-600 text-white',
     tooltip: 'View details',
   },
 };
@@ -115,7 +115,7 @@ function AppTable<T extends Record<string, any>>({
                                 key={index}
                                 onClick={() => handleClick(row)}
                                 // className={`p-2 rounded cursor-pointer ${baseAction.color || 'bg-blue-600 text-white cursor-pointer'}`}
-                                className={`p-1 rounded flex items-center justify-center gap-1 ${baseAction.color} ${!isAllowed ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                className={`p-1 rounded flex items-center justify-center gap-1 ${baseAction.color} ${!isAllowed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                                 title={baseAction.tooltip}
                                 disabled={!isAllowed}
                               >

@@ -14,6 +14,7 @@ import FloatingTextReveal from "@/components/TransitionComponents/FloatingTextRe
 import RandomDirectionText from "../TransitionComponents/RandomDirectionText";
 import Rotating from "../TransitionComponents/Rotating";
 import FadeIn from "../TransitionComponents/FadeIn";
+import AccessibilityPanel from "../AccessibilityPanel";
 
 type Route = {
   type: string;
@@ -65,6 +66,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
       <div className="bg-cyan-700 text-white text-sm flex justify-between items-center px-36 py-1">
         <span>A Digital India Initiative</span>
         <div className="flex items-center gap-3 text-white">
+          <AccessibilityPanel />
           <span className="text-xs">Choose your theme</span>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-orange-500 rounded-full border border-white" />
@@ -102,6 +104,8 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
 
         {/* Navigation Links */}
         <nav className="flex items-center gap-6 mt-2 sm:mt-0 tracking-wider text-base text-cyan-900">
+
+          
 
           <FadeIn stagger={0.2} direction="left" duration={1.5}>
             <Link href="/" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Home</Link>
