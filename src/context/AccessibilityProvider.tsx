@@ -105,7 +105,7 @@ export const AccessibilityProvider = ({ children }: { children: ReactNode }) => 
         root.classList.toggle('saturate', !!settings.saturation);
         root.classList.toggle('text-spacing', !!settings.textSpacing);
         root.classList.toggle('line-height', !!settings.lineHeight);
-        root.classList.toggle('hide-images', !!settings.hideImages);
+        root.classList.toggle('hide-images', !!settings.hideImages);    
         root.classList.toggle('big-cursor', !!settings.bigCursor);
 
         // Font size class: font-size-0 → font-size-4

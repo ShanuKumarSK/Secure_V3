@@ -12,6 +12,10 @@ body {
   /* font-family: 'Ubuntu', sans-serif; */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 
 :root {
   --background: #eff7f5;
@@ -197,12 +201,28 @@ body {
 }
 
 .big-cursor * {
-  cursor: url('https://cdn-icons-png.flaticon.com/128/892/892692.png'), auto !important;
+  cursor: url('@/assets/images/cursor.svg'), auto !important;
 }
+
+.big-cursor a,
+.big-cursor a *,
+.big-cursor button,
+.big-cursor button *,
+.big-cursor [role="button"],
+.big-cursor input[type="submit"],
+.big-cursor input[type="button"] {
+  cursor: url('@/assets/images/pointer.svg'), pointer !important;
+}
+
+
+
 
 .highlight-links a {
   outline: 2px dashed red;
-  background: yellow;
+  background: linear-gradient( rgb(147, 165, 207) 0%, rgb(228, 239, 233)100%);
+  transition: background 1.0s ease-in-out;
+  border-radius: 0.3rem  !important;
+  color: black !important;
 }
 
 html.font-size-0 { font-size: 12px; }
@@ -210,3 +230,12 @@ html.font-size-1 { font-size: 14px; }
 html.font-size-2 { font-size: 16px; } /* default */
 html.font-size-3 { font-size: 18px; }
 html.font-size-4 { font-size: 20px; }
+
+
+
+.accessibility-ignore {
+  font-size: 1rem !important;
+  line-height: normal !important;
+  letter-spacing: normal !important;
+  filter: none !important;
+}

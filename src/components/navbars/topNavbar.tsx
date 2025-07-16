@@ -15,6 +15,7 @@ import RandomDirectionText from "../TransitionComponents/RandomDirectionText";
 import Rotating from "../TransitionComponents/Rotating";
 import FadeIn from "../TransitionComponents/FadeIn";
 import AccessibilityPanel from "../AccessibilityPanel";
+import flagIcon from '@/assets/images/flag.svg';
 
 type Route = {
   type: string;
@@ -64,17 +65,28 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
     <header className="bg-[#eff7f5] backdrop-blur-md border border-white/20 shadow-lg sticky top-0 z-50">
       {/* Top Bar */}
       <div className="bg-cyan-700 text-white text-sm flex justify-between items-center px-36 py-1">
-        <span>A Digital India Initiative</span>
+        <span className="flex items-center gap-3">
+          <Image src={flagIcon} alt="Logo" width={24} height={24} />
+          <ul className="space-y-1 text-sm text-white leading-tight flex flex-row gap-2">
+            <FadeIn stagger={0.2} direction="right" duration={1.0}>
+              <li>भारत सरकार</li>
+            </FadeIn>
+            <FadeIn stagger={0.2} direction="left" duration={1.0}>
+              <li>Government of India</li>
+            </FadeIn>
+          </ul>
+        </span>
         <div className="flex items-center gap-3 text-white">
           <AccessibilityPanel />
-          <span className="text-xs">Choose your theme</span>
+          {/* <span className="text-xs">Choose your theme</span>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-orange-500 rounded-full border border-white" />
-            {/* <Image src="/facebook.svg" alt="Facebook" width={16} height={16} />
+          </div> */}
+          {/* <Image src="/facebook.svg" alt="Facebook" width={16} height={16} />
             <Image src="/cross.svg" alt="Cross" width={16} height={16} />
             <Image src="/rss.svg" alt="RSS" width={16} height={16} />
             <Image src="/accessible.svg" alt="Accessibility" width={16} height={16} /> */}
-          </div>
+
         </div>
       </div>
 
@@ -105,71 +117,20 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
         {/* Navigation Links */}
         <nav className="flex items-center gap-6 mt-2 sm:mt-0 tracking-wider text-base text-cyan-900">
 
-          
+
 
           <FadeIn stagger={0.2} direction="left" duration={1.5}>
             <Link href="/" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Home</Link>
           </FadeIn>
           <FadeIn stagger={0.2} direction="left" duration={1.2}>
-            <Link href="/about" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">About</Link>
+            <Link href="#workflow-system" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">About</Link>
           </FadeIn>
           <FadeIn stagger={0.2} direction="left" duration={0.9}>
-            <Link href="/services" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Services</Link>
+            <Link href="#services" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Services</Link>
           </FadeIn>
           <FadeIn stagger={0.2} direction="left" duration={0.6}>
             <Link href="/dashboard" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Reports</Link>
           </FadeIn>
-          {/* <motion.div
-            key={1}
-            initial="hidden"
-            animate="visible"
-            variants={{
-              visible: { transition: { staggerChildren: 0.15 } },
-              hidden: {},
-            }}
-            className="flex flex-row gap-6"
-          >
-            <motion.p
-              key={2}
-              className="description"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, ease: 'easeOut' }}
-            >
-              <Link href="/" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Home</Link>
-            </motion.p>
-            <motion.p
-              key={3}
-              className="description"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-            >
-              <Link href="/about" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">About</Link>
-            </motion.p>
-            <motion.p
-              key={4}
-              className="description"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9, ease: 'easeOut' }}
-            >
-              <Link href="/services" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Services</Link>
-            </motion.p>
-            <motion.p
-              key={5}
-              className="description"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            >
-              <Link href="/dashboard" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Reports</Link>
-            </motion.p>
-          </motion.div> */}
-
-
-
-
           {
             !isLoggedIn ? <Link href="/auth/signIn" className="relative px-6 py-2 border-1 border-amber-500 text-orange-500 rounded-md overflow-hidden transition duration-300 ease-in-out group cursor-pointer">
               <span className="absolute inset-0 bg-linear-to-r from-amber-500 to-orange-500 transform scale-x-0 origin-left transition-transform duration-300 ease-in-out group-hover:scale-x-100" />
