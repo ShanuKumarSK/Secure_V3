@@ -14,6 +14,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoMdHelpCircle } from "react-icons/io";
 import FadeIn from '@/components/TransitionComponents/FadeIn';
+import WavyText from '@/components/TransitionComponents/WavyText';
+import SecureReveal from '@/components/TransitionComponents/SecureReveal';
 
 
 
@@ -232,7 +234,9 @@ export default function Home() {
 
           {/* Left Section */}
           <div className="text-white max-w-xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">SECURE</h1>
+            {/* <h1 className="text-4xl md:text-5xl font-bold mb-4">SECURE</h1> */}
+            {/* <WavyText text="SECURE" className="text-4xl md:text-5xl font-bold mb-4" /> */}
+            <SecureReveal text="SECURE" />
             <p className="text-lg md:text-xl mb-2">
               Software for Estimate Calculation Using Rural rates for Employment
             </p>
