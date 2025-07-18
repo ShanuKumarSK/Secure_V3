@@ -62,112 +62,97 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
   console.log(routes, "Routes in TopNavbar");
 
   return (
-    <header className="bg-[#eff7f5] backdrop-blur-md border border-white/20 shadow-lg sticky top-0 z-50">
-      {/* Top Bar */}
-      <div className="bg-cyan-700 text-white text-sm flex justify-between items-center px-36 py-1">
-        <span className="flex items-center gap-3">
-          <Image src={flagIcon} alt="Logo" width={24} height={24} />
-          <ul className="space-y-1 text-sm text-white leading-tight flex flex-row gap-2">
-            <FadeIn stagger={0.2} direction="right" duration={1.0}>
-              <li>भारत सरकार</li>
-            </FadeIn>
-            <FadeIn stagger={0.2} direction="left" duration={1.0}>
-              <li>Government of India</li>
-            </FadeIn>
-          </ul>
-        </span>
-        <div className="flex items-center gap-3 text-white">
-          <AccessibilityPanel />
-          {/* <span className="text-xs">Choose your theme</span>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-orange-500 rounded-full border border-white" />
-          </div> */}
-          {/* <Image src="/facebook.svg" alt="Facebook" width={16} height={16} />
-            <Image src="/cross.svg" alt="Cross" width={16} height={16} />
-            <Image src="/rss.svg" alt="RSS" width={16} height={16} />
-            <Image src="/accessible.svg" alt="Accessibility" width={16} height={16} /> */}
-
-        </div>
-      </div>
-
-      {/* Main Nav */}
-      <div className="bg-white/10 backdrop-blur-md border border-white/20 flex flex-wrap items-center justify-between px-36 py-2">
-        {/* Logo Section */}
-        <Link href="/" className="flex items-center gap-3">
-          {/* <Rotating angle={360} speed={2} repeat={Infinity}> */}
-          <Image src={Emblem} alt="Emblem" width={36} height={36} />
-          {/* </Rotating> */}
-          <div className="flex flex-col items-left gap-1">
-            {/* <h3 className="text-lg text-cyan-900 font-bold leading-none">
-              <FloatingTextReveal sentence="Software for Estimate Calculation Using" angle={180} distance={200} speed={0.4} />
-              <br />
-              <FloatingTextReveal sentence="Rural Rates for Employment" angle={225} distance={200} speed={0.4} />
-            </h3> */}
-            <h3 className="text-lg text-cyan-900 font-bold leading-none">
-              <RandomDirectionText sentence="Software for Estimate Calculation Using" />
-              <br />
-              <RandomDirectionText sentence="Rural Rates for Employment" />
-            </h3>
-            <span className="text-xs text-sky-700 font-semibold">
-              Ministry of Rural Development
-            </span>
+    <>
+      <header className="bg-[#eff7f5] backdrop-blur-md border border-white/20 shadow-lg sticky top-0 z-50 w-full">
+        {/* Top Bar */}
+        <div className="bg-cyan-700 text-white text-xs sm:text-sm flex flex-wrap justify-between items-center px-4 sm:px-8 md:px-12 lg:px-24 xl:px-36 py-1">
+          <span className="flex items-center gap-2 sm:gap-3">
+            <Image src={flagIcon} alt="Logo" width={20} height={20} className="w-4 sm:w-6 h-auto" />
+            <ul className="flex gap-1 sm:gap-2 whitespace-nowrap">
+              <FadeIn stagger={0.2} direction="right" duration={1.0}>
+                <li>भारत सरकार</li>
+              </FadeIn>
+              <FadeIn stagger={0.2} direction="left" duration={1.0}>
+                <li>Government of India</li>
+              </FadeIn>
+            </ul>
+          </span>
+          <div className="flex items-center gap-2 sm:gap-3 text-white">
+            <AccessibilityPanel />
           </div>
-        </Link>
+        </div>
 
-        {/* Navigation Links */}
-        <nav className="flex items-center gap-6 mt-2 sm:mt-0 tracking-wider text-base text-cyan-900">
+        {/* Main Nav */}
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 w-full px-4 sm:px-8 md:px-12 lg:px-24 xl:px-36 py-2 flex flex-wrap justify-between items-center gap-y-4">
+          {/* Logo Section */}
+          <div>
+            <Link href="/" className="flex items-center gap-3">
+              <Image src={Emblem} alt="Emblem" width={36} height={36} />
+              <div className="flex flex-col gap-1 text-xs sm:text-sm">
+                <h3 className="text-base sm:text-lg text-cyan-900 font-bold leading-tight">
+                  <RandomDirectionText sentence="Software for Estimate Calculation Using" />
+                  <br />
+                  <RandomDirectionText sentence="Rural Rates for Employment" />
+                </h3>
+                <span className="text-xs text-sky-700 font-semibold">
+                  Ministry of Rural Development
+                </span>
+              </div>
+            </Link>
+          </div>
+          <div>
+            {/* Navigation + Auth Section */}
+            <nav className="flex flex-wrap justify-between w-full items-center gap-4 sm:gap-6 text-sm sm:text-base text-cyan-900 font-medium">
+              {[
+                { href: '/', label: 'Home', delay: 1.5 },
+                { href: '#workflow-system', label: 'About', delay: 1.2 },
+                { href: '#services', label: 'Services', delay: 0.9 },
+                { href: '/dashboard', label: 'Reports', delay: 0.6 },
+              ].map(({ href, label, delay }) => (
+                <FadeIn key={href} stagger={0.2} direction="left" duration={delay}>
+                  <Link
+                    href={href}
+                    className="font-semibold hover:text-amber-600 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+                  >
+                    {label}
+                  </Link>
+                </FadeIn>
+              ))}
 
+              {/* Auth Section */}
+              {!isLoggedIn ? (
+                <Link
+                  href="/auth/signIn"
+                  className="relative px-6 py-2 border border-amber-500 text-orange-500 rounded-md overflow-hidden transition duration-300 ease-in-out group cursor-pointer"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-500 transform scale-x-0 origin-left transition-transform duration-300 ease-in-out group-hover:scale-x-100" />
+                  <span className="relative z-10 group-hover:text-white">Login</span>
+                </Link>
+              ) : (
+                <>
+                  <Tooltip title="Account">
+                    <IconButton onClick={handleMenuClick} className="text-cyan-900">
+                      <AccountCircleIcon fontSize="large" />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleMenuClose}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  >
+                    <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  </Menu>
+                </>
+              )}
+            </nav>
+          </div>
+        </div>
 
-
-          <FadeIn stagger={0.2} direction="left" duration={1.5}>
-            <Link href="/" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Home</Link>
-          </FadeIn>
-          <FadeIn stagger={0.2} direction="left" duration={1.2}>
-            <Link href="#workflow-system" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">About</Link>
-          </FadeIn>
-          <FadeIn stagger={0.2} direction="left" duration={0.9}>
-            <Link href="#services" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Services</Link>
-          </FadeIn>
-          <FadeIn stagger={0.2} direction="left" duration={0.6}>
-            <Link href="/dashboard" className="relative font-semibold hover:text-amber-600 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full">Reports</Link>
-          </FadeIn>
-          {
-            !isLoggedIn ? <Link href="/auth/signIn" className="relative px-6 py-2 border-1 border-amber-500 text-orange-500 rounded-md overflow-hidden transition duration-300 ease-in-out group cursor-pointer">
-              <span className="absolute inset-0 bg-linear-to-r from-amber-500 to-orange-500 transform scale-x-0 origin-left transition-transform duration-300 ease-in-out group-hover:scale-x-100" />
-              <span className="relative z-10 group-hover:text-white">Login</span>
-            </Link> : <>
-              <Tooltip title="Account">
-                <IconButton onClick={handleMenuClick} className="text-white">
-                  <AccountCircleIcon fontSize="large" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-              </Menu>
-            </>
-          }
-
-          {/* {routes?.map((route) => (
-          <Link key={route.key} href={route.route} passHref className="text-black font-semibold text-sm hover:text-blue-600 cursor-pointer">
-              {route?.name}
-          </Link>
-        ))} */}
-        </nav>
-      </div>
-    </header>
+      </header >
+    </>
   );
 };
 

@@ -59,7 +59,7 @@ const AnimatedLetters = ({ text = 'FEATURING', delay = 0 }: { text?: string; del
   }, []);
 
   return (
-    <div key={animationKey} className="flex justify-left items-center gap-[16px]">
+    <div key={animationKey} className="flex justify-center items-center gap-[16px] md:justify-start">
       {letters.map((letter, index) => (
         <motion.span
           key={index}
@@ -67,7 +67,7 @@ const AnimatedLetters = ({ text = 'FEATURING', delay = 0 }: { text?: string; del
           initial={{ rotateY: 90, opacity: 0 }}
           animate={{ rotateY: 0, opacity: 1 }}
           transition={{
-            delay: delay + index * 0.15,
+            delay: delay + index * 0.50,
             duration: 0.6,
             ease: 'easeOut',
           }}

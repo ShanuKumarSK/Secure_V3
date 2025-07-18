@@ -16,6 +16,9 @@ import { IoMdHelpCircle } from "react-icons/io";
 import FadeIn from '@/components/TransitionComponents/FadeIn';
 import WavyText from '@/components/TransitionComponents/WavyText';
 import SecureReveal from '@/components/TransitionComponents/SecureReveal';
+import { statesData } from '@/assets/staticData/stateData';
+import { stateImages } from "@/assets/staticData/stateImages";
+import FlippableCard from '@/components/FlippableCard';
 
 
 
@@ -61,70 +64,76 @@ const services = [
 interface StateCardProps {
   image: string;
   name: string;
+  caption?: string;
   firstApproval: number;
   finalApproval: number;
 }
 
-const statesData: StateCardProps[] = [
-  {
-    image: '/images/jammu.png',
-    name: 'Jammu and Kashmir',
-    firstApproval: 0,
-    finalApproval: 0,
-  },
-  {
-    image: '/images/up.png',
-    name: 'Uttar Pradesh',
-    firstApproval: 2147,
-    finalApproval: 1233,
-  },
-  {
-    image: '/images/tn.png',
-    name: 'Tamil Nadu',
-    firstApproval: 426,
-    finalApproval: 336,
-  },
-  {
-    image: '/images/mh.png',
-    name: 'Maharashtra',
-    firstApproval: 2046,
-    finalApproval: 1193,
-  },
-  {
-    image: '/images/jammu.png',
-    name: 'Jammu and Kashmir',
-    firstApproval: 0,
-    finalApproval: 0,
-  },
-  {
-    image: '/images/up.png',
-    name: 'Uttar Pradesh',
-    firstApproval: 2147,
-    finalApproval: 1233,
-  },
-  {
-    image: '/images/tn.png',
-    name: 'Tamil Nadu',
-    firstApproval: 426,
-    finalApproval: 336,
-  },
-  {
-    image: '/images/mh.png',
-    name: 'Maharashtra',
-    firstApproval: 2046,
-    finalApproval: 1193,
-  },
-  // Add more states as needed
-];
 
-const StateCard = ({ image, name, firstApproval, finalApproval }: StateCardProps) => (
+
+// const statesData: StateCardProps[] = [
+//   {
+//     image: '/images/jammu.png',
+//     name: 'Jammu and Kashmir',
+//     firstApproval: 0,
+//     finalApproval: 0,
+//   },
+//   {
+//     image: '/images/up.png',
+//     name: 'Uttar Pradesh',
+//     firstApproval: 2147,
+//     finalApproval: 1233,
+//   },
+//   {
+//     image: '/images/tn.png',
+//     name: 'Tamil Nadu',
+//     firstApproval: 426,
+//     finalApproval: 336,
+//   },
+//   {
+//     image: '/images/mh.png',
+//     name: 'Maharashtra',
+//     firstApproval: 2046,
+//     finalApproval: 1193,
+//   },
+//   {
+//     image: '/images/jammu.png',
+//     name: 'Jammu and Kashmir',
+//     firstApproval: 0,
+//     finalApproval: 0,
+//   },
+//   {
+//     image: '/images/up.png',
+//     name: 'Uttar Pradesh',
+//     firstApproval: 2147,
+//     finalApproval: 1233,
+//   },
+//   {
+//     image: '/images/tn.png',
+//     name: 'Tamil Nadu',
+//     firstApproval: 426,
+//     finalApproval: 336,
+//   },
+//   {
+//     image: '/images/mh.png',
+//     name: 'Maharashtra',
+//     firstApproval: 2046,
+//     finalApproval: 1193,
+//   },
+//   // Add more states as needed
+// ];
+
+const StateCard = ({ image, name, firstApproval, finalApproval, caption }: StateCardProps) => (
   <div className="bg-white rounded-xl p-4 shadow-lg text-center flex flex-col items-center h-full">
-    <div className="bg-slate-100 p-4 rounded-xl mb-4">
+    <div className="bg-slate-100 rounded-">
       <Image src={image} alt={name} width={80} height={80} />
     </div>
     <h3 className="font-semibold text-sm text-gray-800 mb-1 uppercase text-center leading-tight">
       {name}
     </h3>
+    {caption && (
+      <p className="text-[11px] text-gray-500 italic mb-2">{caption}</p>
+    )}
     <p className="text-xs text-gray-600">First approval: {firstApproval}</p>
     <p className="text-xs text-gray-600">Final approval: {finalApproval}</p>
   </div>
@@ -230,26 +239,26 @@ export default function Home() {
   return (
     <main>
       <section className="bg-gradient-to-br from-cyan-700 to-cyan-600 min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="container mx-auto px-4 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8 py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 flex flex-col-reverse md:flex-row items-center justify-between gap-12 py-12">
 
           {/* Left Section */}
-          <div className="text-white max-w-xl">
-            {/* <h1 className="text-4xl md:text-5xl font-bold mb-4">SECURE</h1> */}
-            {/* <WavyText text="SECURE" className="text-4xl md:text-5xl font-bold mb-4" /> */}
+          <div className="text-white w-full md:w-1/2 text-center md:text-left">
             <SecureReveal text="SECURE" />
-            <p className="text-lg md:text-xl mb-2">
+            <p className="text-base sm:text-lg md:text-xl mt-2 mb-2">
               Software for Estimate Calculation Using Rural rates for Employment
             </p>
-            <p className="text-sm md:text-base mb-2">Ministry of Rural Development</p>
-            <p className="text-sm md:text-base mb-6">Government of India</p>
+            <p className="text-sm sm:text-base mb-1">Ministry of Rural Development</p>
+            <p className="text-sm sm:text-base mb-6">Government of India</p>
 
-            <button className="bg-transparent text-white border border-white px-6 py-2 rounded hover:bg-white hover:text-purple-700 transition">
-              LOGIN HERE
-            </button>
+            <div className="flex justify-center md:justify-start">
+              <button className="bg-transparent text-white border border-white px-6 py-2 rounded hover:bg-white hover:text-purple-700 transition text-sm sm:text-base">
+                LOGIN HERE
+              </button>
+            </div>
           </div>
 
           {/* Right Section */}
-          <div className="max-w-[600px] w-full animate-bounce">
+          <div className="w-full md:w-1/2 max-w-md animate-bounce">
             <Image
               src={heroIllustration}
               alt="Illustration"
@@ -262,10 +271,13 @@ export default function Home() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+        <div className="absolute bottom-6 md:bottom-36 left-1/2 transform -translate-x-1/2">
           <div className="animate-bounce text-white text-2xl">&#x2304;</div>
         </div>
       </section>
+
+
+
       <section id='workflow-system' className="bg-white py-12 border-t border-purple-200 scroll-mt-28">
         <div className="container mx-auto px-4 md:px-12 flex flex-col md:flex-row items-center justify-between gap-10">
           {/* Left Content */}
@@ -326,7 +338,7 @@ export default function Home() {
 
         </div>
       </section>
-      <section className="py-12 bg-gradient-to-r from-cyan-600 to-cyan-700">
+      {/* <section className="py-12 bg-gradient-to-r from-cyan-600 to-cyan-700">
         <div className="container mx-auto px-4">
           <h2 className="text-white text-center text-2xl font-bold mb-8">Enrolled States</h2>
           <Swiper
@@ -345,11 +357,88 @@ export default function Home() {
             modules={[Autoplay]}
             className="w-full"
           >
-            {statesData.map((state, index) => (
-              <SwiperSlide key={index}>
-                <StateCard {...state} />
-              </SwiperSlide>
-            ))}
+            {Object.entries(statesData).map(([code, data], index) => {
+              const imageData = stateImages[code];
+              if (!imageData) return null;
+
+              return (
+                <SwiperSlide key={index}>
+                  <StateCard
+                    name={data.name}
+                    image={imageData.image}
+                    caption={imageData.caption}
+                    firstApproval={data.firstApproval}
+                    finalApproval={data.finalApproval}
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+      </section> */}
+      <section className="py-12 bg-gradient-to-r from-cyan-600 to-cyan-700">
+        <div className="container mx-auto px-4">
+          <h2 className="text-white text-center text-2xl font-bold mb-8">Enrolled States</h2>
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={3} // Show 3 cards
+            centeredSlides={true} // Center active slide
+            loop={true}
+            speed={5000}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              320: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 5 },
+            }}
+            modules={[Autoplay]}
+            className="w-full enrolled-swiper"
+          >
+            {Object.entries(statesData).map(([code, data], index) => {
+              const imageData = stateImages[code];
+              if (!imageData) return null;
+
+              return (
+                <SwiperSlide key={index} className="group relative transform transition-transform duration-300">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    viewport={{ once: true, amount: 0.3 }} // Trigger animation when 30% visible
+                  >
+                    <FlippableCard
+                      front={
+                        <div className="bg-white rounded-xl shadow-lg h-full flex flex-col overflow-hidden">
+                          <div className="relative w-full h-40 sm:h-48 md:h-56 lg:h-64">
+                            <Image
+                              src={imageData.image}
+                              alt={data.name}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 25vw"
+                            />
+                          </div>
+                          <div className="p-2 text-center">
+                            <h3 className="font-bold text-lg">{data.name}</h3>
+                          </div>
+                        </div>
+                      }
+                      back={
+                        <div className="bg-cyan-700 text-white p-4 rounded-xl h-full flex flex-col justify-center items-center">
+                          {/* Back content */}
+                          <p className="text-sm mb-1">1st Approval: {data.firstApproval}</p>
+                          <p className="text-sm">Final Approval: {data.finalApproval}</p>
+                        </div>
+                      }
+                    />
+                  </motion.div>
+                </SwiperSlide>
+
+              );
+            })}
           </Swiper>
         </div>
       </section>

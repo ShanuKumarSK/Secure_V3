@@ -239,3 +239,44 @@ html.font-size-4 { font-size: 20px; }
   letter-spacing: normal !important;
   filter: none !important;
 }
+
+/* Default scale for all slides */
+.enrolled-swiper .swiper-slide {
+  transition: transform 0.4s ease, filter 0.4s ease;
+  transform: scale(0.80);
+  z-index: 10;
+  filter: brightness(0.9);
+}
+
+/* Next/Prev slides slightly bigger */
+.enrolled-swiper .swiper-slide-prev,
+.enrolled-swiper .swiper-slide-next {
+  transform: scale(0.92);
+  filter: blur(0px) brightness(1);
+  z-index: 20;
+}
+
+/* Active (center) slide looks largest */
+.enrolled-swiper .swiper-slide-active {
+  transform: scale(0.92);
+  z-index: 30;
+  filter: none;
+}
+
+/* On hover of center card: push neighbors back */
+.enrolled-swiper .swiper-slide-active:hover ~ .swiper-slide-prev,
+.enrolled-swiper .swiper-slide-active:hover ~ .swiper-slide-next {
+  transform: scale(0.85) translateZ(-50px);
+  filter: blur(2px) brightness(0.8);
+}
+
+/* global.css */
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}

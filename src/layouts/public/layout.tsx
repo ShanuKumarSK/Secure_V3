@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import SideNavbar from "@/components/navbars/sideNavbar";
 import TopNavbar from "@/components/navbars/topNavbar";
-import React from "react";
+import React, { useState } from "react";
 import {
   Dashboard as DashboardIcon,
   DocumentScanner as DocumentScannerIcon,
@@ -82,6 +82,7 @@ type PublicLayoutProps = {
 
 export default function PublicLayout({ children, routes }: PublicLayoutProps) {
   const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
 
   // Hide SideNavbar for "/auth" routes and homepage "/"
   const hideSidebar = pathname === "/" || pathname.startsWith("/auth");
@@ -90,10 +91,15 @@ export default function PublicLayout({ children, routes }: PublicLayoutProps) {
     <div >
       <TopNavbar routes={routes} />
 
-      {!hideSidebar && <SideNavbar routes={SideNavRoutes} />}
+      {!hideSidebar && <SideNavbar
+        routes={SideNavRoutes}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />}
       <main
-        style={{
-          marginLeft: hideSidebar ? 0 : 256,
+         style={{
+          marginLeft: hideSidebar ? 0 : collapsed ? 80 : 256, // ✅ dynamic
+          transition: 'margin-left 0.3s ease',
         }}
       >
         {!hideSidebar && <Breadcrumb />}
