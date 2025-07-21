@@ -86,7 +86,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
         <div className="bg-white/10 backdrop-blur-md border border-white/20 w-full px-4 sm:px-8 md:px-12 lg:px-24 xl:px-36 py-2 flex flex-wrap justify-between items-center gap-y-4">
           {/* Logo Section */}
           <div>
-            <Link href="/" className="flex items-center gap-3">
+            <Link href={!isLoggedIn ? "/" : "/states/dashboard"} className="flex items-center gap-3">
               <Image src={Emblem} alt="Emblem" width={36} height={36} />
               <div className="flex flex-col gap-1 text-xs sm:text-sm">
                 <h3 className="text-base sm:text-lg text-cyan-900 font-bold leading-tight">
@@ -103,24 +103,25 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
           <div>
             {/* Navigation + Auth Section */}
             <nav className="flex flex-wrap justify-between w-full items-center gap-4 sm:gap-6 text-sm sm:text-base text-cyan-900 font-medium">
-              {[
-                { href: '/', label: 'Home', delay: 1.5 },
-                { href: '#workflow-system', label: 'About', delay: 1.2 },
-                { href: '#services', label: 'Services', delay: 0.9 },
-                { href: '/dashboard', label: 'Reports', delay: 0.6 },
-              ].map(({ href, label, delay }) => (
-                <FadeIn key={href} stagger={0.2} direction="left" duration={delay}>
-                  <Link
-                    href={href}
-                    className="font-semibold hover:text-amber-600 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
-                  >
-                    {label}
-                  </Link>
-                </FadeIn>
-              ))}
+              {!isLoggedIn ? (<>
+                {[
+                  { href: '/', label: 'Home', delay: 1.5 },
+                  { href: '/#workflow-system', label: 'About', delay: 1.2 },
+                  { href: '/#services', label: 'Services', delay: 0.9 },
+                  { href: '/dashboard', label: 'Reports', delay: 0.6 },
+                ].map(({ href, label, delay }) => (
+                  <FadeIn key={href} stagger={0.2} direction="left" duration={delay}>
+                    <Link
+                      href={href}
+                      className="font-semibold hover:text-amber-600 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-amber-600 after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+                    >
+                      {label}
+                    </Link>
+                  </FadeIn>
+                ))}
 
-              {/* Auth Section */}
-              {!isLoggedIn ? (
+                {/* Auth Section */}
+
                 <Link
                   href="/auth/signIn"
                   className="relative px-6 py-2 border border-amber-500 text-orange-500 rounded-md overflow-hidden transition duration-300 ease-in-out group cursor-pointer"
@@ -128,6 +129,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ routes }) => {
                   <span className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-500 transform scale-x-0 origin-left transition-transform duration-300 ease-in-out group-hover:scale-x-100" />
                   <span className="relative z-10 group-hover:text-white">Login</span>
                 </Link>
+              </>
               ) : (
                 <>
                   <Tooltip title="Account">

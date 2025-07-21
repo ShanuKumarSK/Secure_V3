@@ -70,7 +70,7 @@ const SideNavRoutes = [
       { name: 'Previous Year Works', route: '/states/revised-works/previous-year-works' },
     ],
   },
-   {
+  {
     type: 'dropdown',
     name: 'Publish',
     key: 'Publish',
@@ -112,12 +112,24 @@ export default function StatesLayout({ children, routes }: { children: React.Rea
   //     return <div>Loading...</div>;
   //   }
 
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <div>
       <TopNavbar routes={routes} />
-      <SideNavbar routes={SideNavRoutes} />
-       <Breadcrumb />
-      <main style={{ marginLeft: 200, marginTop: 50, padding: 20 }}>{children}</main>
+      <SideNavbar routes={SideNavRoutes}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />
+      <Breadcrumb />
+      <main
+        style={{
+          marginLeft: collapsed ? 80 : 256, // ✅ dynamic
+          transition: 'margin-left 0.3s ease',
+        }}
+      >
+        {children}
+      </main>
       <Footer />
     </div>
   );
