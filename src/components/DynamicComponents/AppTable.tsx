@@ -115,7 +115,7 @@ function AppTable<T extends Record<string, any>>({
                                 key={index}
                                 onClick={() => handleClick(row)}
                                 // className={`p-2 rounded cursor-pointer ${baseAction.color || 'bg-blue-600 text-white cursor-pointer'}`}
-                                className={`p-1 rounded flex items-center justify-center gap-1 ${baseAction.color} ${!isAllowed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                                className={`p-1.5 text-lg rounded flex items-center justify-center gap-1 ${baseAction.color} ${!isAllowed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                                 title={baseAction.tooltip}
                                 disabled={!isAllowed}
                               >
@@ -125,7 +125,7 @@ function AppTable<T extends Record<string, any>>({
                           })}
                         </div>
                       ) : (
-                        <FadeIn>{col.render ? col.render(row) : row[col.key as keyof T]}</FadeIn>
+                        <FadeIn><p className='text-base'>{col.render ? col.render(row) : row[col.key as keyof T]}</p></FadeIn>
                       )}
                     </TableCell>
 

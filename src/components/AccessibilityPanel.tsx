@@ -47,6 +47,7 @@ const AccessibilityToggle = () => {
             <button
                 className="p-2 text-white cursor-pointer hover:bg-cyan-600 transition rounded-md"
                 aria-label="Accessibility Tools"
+                onClick={() => setOpen(!open)}
             >
                 <IoAccessibility size={20} />
             </button>

@@ -33,8 +33,8 @@ const data = [
 ];
 
 const colorMap = {
-  blue: "bg-blue-500",
-  green: "bg-green-500",
+  blue: "bg-sky-600",
+  green: "bg-emerald-500",
   slate: "bg-slate-800",
 };
 

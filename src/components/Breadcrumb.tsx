@@ -57,14 +57,14 @@ export default function Breadcrumb() {
 
   return (
     <div className="w-full bg-gradient-to-b from-cyan-700 to-cyan-600 py-4 px-4 shadow-sm text-white text-sm">
-      <nav className="max-w-screen-2xl mx-auto flex space-x-2 items-center">
+      <nav className="max-w-screen-2xl flex space-x-2 items-center">
         {/* Home Link Always Clickable */}
         <Link
           href="/"
-          className="flex items-center gap-1 hover:underline text-white font-bold"
+          className="flex items-center gap-1 hover:underline text-white font-semibold"
         >
-          <FaHome className="text-sm" />
-          <span>Home</span>
+          <FaHome className="h-5 w-5" />
+          <span className="text-base">Home</span>
         </Link>
 
         {paths.map((segment, index) => {
@@ -77,20 +77,20 @@ export default function Breadcrumb() {
 
           return (
             <div key={index} className="flex items-center space-x-2">
-              <span>/</span>
+              <span className="text-base font-semibold">/</span>
               {isLast ? (
-                <span className="text-white font-bold capitalize">
+                <span className="text-white font-semibold capitalize text-base">
                   {decodedSegment}
                 </span>
               ) : isOneStepBack ? (
                 <Link
                   href={generatePath(index)}
-                  className="hover:underline text-white/70 capitalize"
+                  className="hover:underline text-white/70 capitalize text-base"
                 >
                   {decodedSegment}
                 </Link>
               ) : (
-                <span className="text-white/40 capitalize">
+                <span className="text-white/40 capitalize text-base">
                   {decodedSegment}
                 </span>
               )}
